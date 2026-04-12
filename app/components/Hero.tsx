@@ -9,13 +9,14 @@ export default function Hero() {
       {/* Hero Content */}
       <div className="relative w-full h-[850px]">
         <Image 
-          src="/image/hero.png" 
+          src="/image/hero.webp" 
           alt="Radio Budi Luhur Hero" 
           fill 
           className="object-cover" 
           priority
-          quality={100}
+          quality={70}
           unoptimized={true}
+          sizes="(max-width: 768px) 100vw, 1920px"
         />
       </div>
     </section>
