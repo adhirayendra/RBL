@@ -7,7 +7,7 @@ export default function ProgramHero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/image/Youtubr/8zVeXiPuWog-HD 1.png" 
+          src="/image/Youtube/8zVeXiPuWog-HD 1.png" 
           alt="Radio Budi Luhur Hero"
           fill
           className="object-cover"
