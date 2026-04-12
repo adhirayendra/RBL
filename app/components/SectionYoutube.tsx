@@ -12,25 +12,25 @@ export const SectionYoutube = () => {
       id: 1,
       title: "Perkenalkin Radio Budi luhur",
       description: "Radio komunitas yang telah menjadi suara khas Universitas Budi Luhur sejak 2005, hadir di frekuensi 107.7 FM dan dapat dinikmati secara global melalui platform streaming di www.radiobudiluhur.com atau di RCTI+",
-      thumbnail: "/image/Youtubr/8zVeXiPuWog-HD 1.png",
+      thumbnail: "/image/Youtube/8zVeXiPuWog-HD 1.png",
     },
     {
       id: 2,
       title: "Nyobrak: Eksistensi Radio & Komunitas Kampus",
       description: "Membahas perjalanan dan eksistensi radio komunitas kampus di era digital bersama para pakar dan praktisi media lokal.",
-      thumbnail: "/image/Youtubr/8zVeXiPuWog-HD 1.png", // Using same placeholder for now
+      thumbnail: "/image/Youtube/8zVeXiPuWog-HD 1.png", // Using same placeholder for now
     },
     {
       id: 3,
       title: "Tanya Jawab Asal Edisi Ramadhan",
       description: "Segmen spesial Ramadhan yang penuh dengan tanya jawab seru dan penuh tawa bersama pengisi acara favorit kamu.",
-      thumbnail: "/image/Youtubr/8zVeXiPuWog-HD 1.png",
+      thumbnail: "/image/Youtube/8zVeXiPuWog-HD 1.png",
     },
     {
       id: 4,
       title: "Now We Know: Program Edukasi Seru",
       description: "Wawasan baru setiap hari! Temukan fakta-fakta unik yang belum kamu ketahui sebelumnya hanya di program Now We Know.",
-      thumbnail: "/image/Youtubr/8zVeXiPuWog-HD 1.png",
+      thumbnail: "/image/Youtube/8zVeXiPuWog-HD 1.png",
     }
   ];
 
@@ -122,4 +122,4 @@ export const SectionYoutube = () => {
       </div>
     </section>
   );
-};
+};
