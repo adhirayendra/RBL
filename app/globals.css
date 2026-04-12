@@ -8,19 +8,146 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), Helvetica, sans-serif;
+}
+
+.program-swiper .swiper-pagination-bullet {
+  background-color: #ACA4A4;
+  opacity: 1;
+}
+
+.program-swiper .swiper-pagination-bullet-active {
+  background-color: #ffe200;
+  opacity: 1;
+}
+
+/* ===== Playlist / Vinyl Animation Styles ===== */
+
+/* New Flat Song Row Grid */
+.playlist-row {
+  display: grid;
+  grid-template-columns: 100px 180px 1fr 120px;
+  align-items: center;
+}
+
+/* Hide scrollbar for elements */
+.hide-scrollbar {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+/* ===== Album / Vinyl Base ===== */
+.album-vinyl {
+  --album-size: 110px;
+  --vinyl-size: 95px;
+  --cover-translate: -10px;
+  --cover-rotate: -3deg;
+  --vinyl-translate: 55px;
+  --vinyl-rotate: 360deg;
+  position: relative;
+  width: var(--album-size);
+  height: var(--album-size);
+}
+
+.album-cover-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: transform 0.5s ease-in-out;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Light reflection effects */
+.album-cover-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 1%, transparent 50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Vinyl disc */
+.vinyl-record {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: var(--vinyl-size);
+  height: var(--vinyl-size);
+  margin-top: calc(var(--vinyl-size) / -2);
+  background:
+    conic-gradient(from 50deg at 50% 50%,
+      transparent 46%, rgba(255, 255, 255, 0.05) 48%, rgba(255, 255, 255, 0.1) 51%, transparent 56%),
+    conic-gradient(from 225deg at 50% 50%,
+      transparent 46%, rgba(255, 255, 255, 0.05) 48%, rgba(255, 255, 255, 0.1) 51%, transparent 56%),
+    repeating-radial-gradient(circle, #222 0%, #111 2px, #222 4px);
+  border-radius: 50%;
+  z-index: 1;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0) rotate(0deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.vinyl-center {
+  width: 32%;
+  height: 32%;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 4px solid #000;
+}
+
+/* Hover triggers */
+.playlist-row:hover .album-cover-wrapper {
+  transform: translateX(var(--cover-translate)) rotate(var(--cover-rotate));
+}
+
+.playlist-row:hover .vinyl-record {
+  transform: translateX(var(--vinyl-translate)) rotate(var(--vinyl-rotate));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .playlist-row {
+    grid-template-columns: 60px 100px 1fr 60px;
+  }
+
+  .album-vinyl {
+    --album-size: 80px;
+    --vinyl-size: 70px;
+    --vinyl-translate: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .playlist-row {
+    grid-template-columns: 40px 70px 1fr 50px;
+  }
+
+  .album-vinyl {
+    --album-size: 60px;
+    --vinyl-size: 50px;
+    --vinyl-translate: 25px;
+  }
 }
