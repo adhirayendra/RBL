@@ -61,15 +61,20 @@ export default function Footer() {
       {/* 3. Social Media & Copyright Section (Di atas area ilustrasi kuning) */}
       <div className="relative z-20 w-full flex flex-col items-center pb-12 mt-[-60px] md:mt-[-100px] gap-8">
         <div className="flex items-center justify-center gap-3 md:gap-5">
-          {socialIcons.map((social, i) => (
-            <a
-              key={i}
-              href={social.link}
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-b from-blue-400 to-[#2D5FFE] text-white flex items-center justify-center text-lg md:text-xl shadow-xl hover:scale-110 transition-transform border border-white/50"
-            >
-              {social.icon}
-            </a>
-          ))}
+          {socialIcons.map((social, i) => {
+            const platformNames = ["Facebook", "Twitter", "Instagram", "Youtube", "Google", "Tiktok"];
+            const platform = platformNames[i] || "Social Media";
+            return (
+              <a
+                key={i}
+                href={social.link}
+                aria-label={`Follow us on ${platform}`}
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-b from-blue-400 to-[#2D5FFE] text-white flex items-center justify-center text-lg md:text-xl shadow-xl hover:scale-110 transition-transform border border-white/50"
+              >
+                {social.icon}
+              </a>
+            );
+          })}
         </div>
 
         {/* Copyright */}

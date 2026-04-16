@@ -177,6 +177,7 @@ export const SectionYoutube = () => {
               {/* RECOMMENDED */}
               <button
                 onClick={() => setShowRecommended(true)}
+                aria-label="Show recommended videos"
                 className="w-full sm:w-56 h-14 bg-[#2D5FFE] rounded-[46px] flex items-center justify-center text-white text-2xl font-bold font-['DM_Sans'] hover:scale-105 transition-transform cursor-pointer"
               >
                 RECOMMENDED
@@ -189,11 +190,12 @@ export const SectionYoutube = () => {
         {showRecommended && (
           <div className="absolute inset-y-0 right-0 w-full md:w-[500px] bg-[#121212]/95 z-40 backdrop-blur-md p-6 md:p-8 flex flex-col transition-all duration-500 animate-in slide-in-from-right">
             <div className="flex justify-between items-center mb-8 md:mb-10">
-              <div className="bg-[#2D5FFE] text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wider">
+              <div className="bg-[#2D5FFE] text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wider" role="status">
                 RECOMMENDED
               </div>
               <button
                 onClick={() => setShowRecommended(false)}
+                aria-label="Close recommendations panel"
                 className="text-white hover:text-[#FFDD00] transition-colors bg-white/10 p-2 rounded-full cursor-pointer"
               >
                 <FaTimes size={18} />
@@ -205,6 +207,14 @@ export const SectionYoutube = () => {
                 <div
                   key={idx}
                   onClick={() => video.link && window.open(video.link, '_blank')}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      video.link && window.open(video.link, '_blank');
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Watch recommended video: ${video.title}`}
                   className="flex gap-4 group cursor-pointer transition-all hover:bg-white/5 p-2 rounded-xl"
                 >
                   <div className="flex-1 flex flex-col justify-between py-1">
@@ -219,7 +229,7 @@ export const SectionYoutube = () => {
                   <div className="w-32 h-[72px] md:w-40 md:h-[90px] relative rounded-xl overflow-hidden flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                     <Image 
                       src={video.thumbnail} 
-                      alt={video.title} 
+                      alt="" 
                       fill 
                       className="object-cover" 
                       sizes="(max-width: 768px) 128px, 160px"
@@ -234,10 +244,19 @@ export const SectionYoutube = () => {
 
       {/* Thumbnails Area - Improved Responsive Layout */}
       <div className="w-full max-w-[1440px] px-6 md:px-[33px] mt-8">
-        <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 md:gap-[26px]">
+        <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 md:gap-[26px]" role="tablist">
           {videos.map((video, i) => (
             <div
               key={video.id}
+              role="tab"
+              aria-selected={activeIndex === i}
+              aria-label={`Select program: ${video.title.replace('\n', ' ')}`}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setActiveIndex(i);
+                }
+              }}
               className="relative cursor-pointer group transition-all"
               onClick={() => setActiveIndex(i)}
             >
@@ -245,7 +264,7 @@ export const SectionYoutube = () => {
               <div className={`w-[calc(50vw-36px)] md:w-80 h-32 md:h-48 overflow-hidden rounded-lg relative transition-all duration-300 ${activeIndex === i ? 'scale-[1.02]' : ''}`}>
                 <Image
                   src={video.thumbnail}
-                  alt={video.title}
+                  alt=""
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 320px"
@@ -266,11 +285,13 @@ export const SectionYoutube = () => {
         </div>
 
         {/* Pagination/Scroll Indicator */}
-        <div className="flex items-center justify-center gap-6 mt-12">
+        <div className="flex items-center justify-center gap-6 mt-12" role="navigation" aria-label="YouTube Program Pagination">
           {videos.map((_, i) => (
-            <div
+            <button
               key={i}
               onClick={() => setActiveIndex(i)}
+              aria-label={`Go to video ${i + 1}`}
+              aria-current={activeIndex === i ? 'step' : undefined}
               className={`w-4 h-4 md:w-6 md:h-6 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? 'bg-[#FFDD00]' : 'bg-white hover:bg-white/80'}`}
             />
           ))}

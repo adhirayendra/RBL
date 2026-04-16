@@ -192,13 +192,14 @@ export default function ProgramSpotify() {
             <div className="flex items-center gap-4 bg-white/5 py-4 rounded-xl px-4 lg:px-6 mb-6">
               <button
                 onClick={() => skipTrack("prev")}
+                aria-label="Previous track"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <FaStepBackward size={20} />
               </button>
 
               <div className="flex-1 flex items-center gap-3 relative">
-                <span className="text-gray-400 text-[10px] md:text-xs font-medium w-8 text-right">
+                <span className="text-gray-400 text-[10px] md:text-xs font-medium w-8 text-right" aria-hidden="true">
                   {formatTime(currentTime)}
                 </span>
                 <input
@@ -207,22 +208,28 @@ export default function ProgramSpotify() {
                   max={duration || 0}
                   value={currentTime}
                   onChange={handleSeek}
+                  aria-label="Seek track position"
                   className="flex-1 h-1 bg-neutral-600 rounded-full appearance-none cursor-pointer accent-white hover:accent-[#FFDD00] transition-all"
                 />
-                <span className="text-gray-400 text-[10px] md:text-xs font-medium w-8">
+                <span className="text-gray-400 text-[10px] md:text-xs font-medium w-8" aria-hidden="true">
                   {formatTime(duration)}
                 </span>
               </div>
 
               <button
                 onClick={() => skipTrack("next")}
+                aria-label="Next track"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <FaStepForward size={20} />
               </button>
 
               <div className="hidden lg:flex items-center gap-2 group ml-2">
-                <button onClick={() => setIsMuted(!isMuted)} className="text-gray-400 hover:text-white">
+                <button 
+                  onClick={() => setIsMuted(!isMuted)} 
+                  aria-label={isMuted ? "Unmute volume" : "Mute volume"}
+                  className="text-gray-400 hover:text-white"
+                >
                   {isMuted || volume === 0 ? <FaVolumeMute size={18} /> : <FaVolumeUp size={18} />}
                 </button>
                 <input
@@ -232,27 +239,30 @@ export default function ProgramSpotify() {
                   step="0.01"
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
+                  aria-label="Adjust volume"
                   className="w-0 group-hover:w-20 overflow-hidden h-1 bg-neutral-600 rounded-full appearance-none cursor-pointer accent-white transition-all duration-300"
                 />
               </div>
 
-              <button className="text-gray-500 hover:text-white transition-colors px-2">
+              <button aria-label="More options" className="text-gray-500 hover:text-white transition-colors px-2">
                 <FaEllipsisH size={20} />
               </button>
 
               <button
                 onClick={togglePlay}
+                aria-label={isPlaying ? "Pause track" : "Play track"}
                 className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform flex-shrink-0 shadow-lg ml-2"
               >
                 {isPlaying ? <FaPause className="text-lg" /> : <FaPlay className="ml-1 text-lg" />}
               </button>
             </div>
 
-            <div className="w-full max-h-[160px] overflow-y-auto pr-4 spotify-scrollbar">
+            <div className="w-full max-h-[160px] overflow-y-auto pr-4 spotify-scrollbar" role="list" aria-label="Playlist">
               <div className="flex flex-col border-t border-white/10">
                 {currentEpisode.playlist.map((track, trackIdx) => (
                   <div
                     key={track.id}
+                    role="listitem"
                     onClick={() => {
                       setCurrentTrackIdx(trackIdx);
                       setTimeout(() => {
@@ -262,10 +272,23 @@ export default function ProgramSpotify() {
                         }
                       }, 100);
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        setCurrentTrackIdx(trackIdx);
+                        setTimeout(() => {
+                          if (audioRef.current) {
+                            audioRef.current.play();
+                            setIsPlaying(true);
+                          }
+                        }, 100);
+                      }
+                    }}
+                    tabIndex={0}
+                    aria-label={`Play track: ${track.title}`}
                     className={`flex justify-between items-center py-4 border-b border-white/5 group cursor-pointer hover:bg-white/5 px-2 rounded-lg transition-colors ${currentTrackIdx === trackIdx ? 'bg-white/5' : ''}`}
                   >
                     <div className="flex gap-4 items-center">
-                      <span className={`text-gray-500 font-bold w-4 ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : ''}`}>
+                      <span className={`text-gray-500 font-bold w-4 ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : ''}`} aria-hidden="true">
                         {currentTrackIdx === trackIdx && isPlaying ? "▶" : trackIdx + 1}
                       </span>
                       <div className="flex flex-col">
@@ -275,7 +298,7 @@ export default function ProgramSpotify() {
                         <span className="text-xs text-gray-500">{currentEpisode.author}</span>
                       </div>
                     </div>
-                    <span className={`text-sm ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : 'text-gray-500'}`}>
+                    <span className={`text-sm ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : 'text-gray-500'}`} aria-label={`Track duration: ${track.duration}`}>
                       {track.duration}
                     </span>
                   </div>
@@ -287,16 +310,26 @@ export default function ProgramSpotify() {
       </section>
 
       <section className="w-full bg-[#2D5FFE] pb-15 pt-8">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex gap-8 md:gap-10 overflow-x-auto hide-scrollbar pb-10 pt-10 scroll-smooth snap-x">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex gap-8 md:gap-10 overflow-x-auto hide-scrollbar pb-10 pt-10 scroll-smooth snap-x" role="tablist" aria-label="Spotify Series Programs">
           {episodes.map((episode, i) => (
             <div
               key={i}
+              role="tab"
+              aria-selected={activeIndex === i}
+              aria-label={`Select series: ${episode.title}`}
+              tabIndex={0}
               onClick={() => {
                 setActiveIndex(i);
                 setCurrentTrackIdx(0);
                 if (isPlaying && audioRef.current) {
                   audioRef.current.pause();
                   setIsPlaying(false);
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setActiveIndex(i);
+                  setCurrentTrackIdx(0);
                 }
               }}
               className="flex-shrink-0 cursor-pointer group relative pt-6 snap-center"
@@ -309,7 +342,7 @@ export default function ProgramSpotify() {
               <div className={`w-48 h-48 md:w-64 md:h-64 rounded-[40px] overflow-hidden transition-all duration-300 ${activeIndex === i ? 'border-[6px] border-[#FFDD00]' : 'bg-gray-200/40 group-hover:scale-105'}`}>
                 <Image
                   src={episode.thumbnail}
-                  alt={episode.title}
+                  alt=""
                   width={256}
                   height={256}
                   className={`w-full h-full object-cover transition-all duration-300 ${activeIndex === i ? 'opacity-100' : 'opacity-80'}`}
@@ -322,13 +355,15 @@ export default function ProgramSpotify() {
         </div>
 
         {/* Dynamic Pagination Dots */}
-        <div className="flex justify-center items-center gap-5 mt-4">
+        <div className="flex justify-center items-center gap-5 mt-4" role="navigation" aria-label="Series Pagination">
           {episodes.map((_, i) => (
-            <div
+            <button
               key={i}
               onClick={() => setActiveIndex(i)}
+              aria-label={`Go to series ${i + 1}`}
+              aria-current={activeIndex === i ? 'step' : undefined}
               className={`w-4 h-4 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? 'bg-[#FFDD00]' : 'bg-white hover:bg-white/80'}`}
-            ></div>
+            ></button>
           ))}
         </div>
       </section>

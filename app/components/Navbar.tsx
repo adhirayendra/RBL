@@ -18,7 +18,7 @@ export default function Navbar() {
 
         {/* KOLOM 2: Logo (Tengah Sempurna) */}
         <div className="md:absolute md:left-1/2 md:-translate-x-1/2 flex justify-start md:justify-center z-0">
-          <Link href="/">
+          <Link href="/" aria-label="Radio Budi Luhur - Home">
             <Image 
               src="/image/logo.png" 
               alt="Radio Budi Luhur Logo" 
@@ -37,11 +37,12 @@ export default function Navbar() {
           <div className="hidden md:block">
             <Link 
               href="#" 
+              aria-label="Listen to live streaming"
               className="bg-gradient-to-br from-[#FFDD00] to-[#C1A600] text-black font-extrabold px-6 py-2.5 rounded-full flex items-center gap-3 hover:opacity-90 transition-all shadow-lg uppercase tracking-wider text-xs"
             >
               <Image 
                 src="/image/play.png" 
-                alt="Play" 
+                alt="Play icon" 
                 width={16} 
                 height={16} 
               />
@@ -50,9 +51,12 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Icon (Muncul di HP sebagai ganti Menu Kiri) */}
-          <div className="md:hidden text-[#FFDD00] font-bold border-2 border-[#FFDD00] px-3 py-1 rounded">
+          <button 
+            aria-label="Open navigation menu"
+            className="md:hidden text-[#FFDD00] font-bold border-2 border-[#FFDD00] px-3 py-1 rounded hover:bg-[#FFDD00] hover:text-black transition-colors"
+          >
             MENU
-          </div>
+          </button>
         </div>
 
       </div>
