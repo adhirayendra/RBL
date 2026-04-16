@@ -15,7 +15,8 @@ export default function StreamingHero() {
           alt="Streaming Background"
           fill
           className="object-cover object-top"
-          unoptimized={true}
+          priority
+          quality={90}
           sizes="100vw"
         />
       </div>
