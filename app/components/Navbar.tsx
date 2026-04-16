@@ -25,6 +25,9 @@ export default function Navbar() {
               width={60} 
               height={60} 
               className="object-contain hover:scale-110 transition-transform"
+              priority
+              quality={80}
+              sizes="60px"
             />
           </Link>
         </div>

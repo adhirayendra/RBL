@@ -26,8 +26,8 @@ export default function Footer() {
           // dan object-bottom agar bagian bawah ilustrasi (area kuning) tetap terlihat.
           className="object-cover object-bottom"
           priority
-          quality={100}
-          unoptimized={true}
+          quality={80}
+          sizes="(max-width: 768px) 100vw, 1525px"
         />
 
         {/* OVERLAY: Gradasi Biru Solid di Bagian Atas */}
@@ -51,8 +51,8 @@ export default function Footer() {
               fill
               className="object-contain"
               priority
-              quality={100}
-              unoptimized={true}
+              quality={80}
+              sizes="(max-width: 768px) 144px, 240px"
             />
           </div>
         </div>

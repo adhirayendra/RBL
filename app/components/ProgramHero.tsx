@@ -11,6 +11,9 @@ export default function ProgramHero() {
           alt="Radio Budi Luhur Hero"
           fill
           className="object-cover"
+          priority
+          quality={80}
+          sizes="(max-width: 768px) 100vw, 1920px"
         />
         {/* Dark overlay specifically tailored for the right text */}
         <div className="absolute inset-0 bg-gradient-to-l from-zinc-900 via-zinc-900/60 to-transparent" />

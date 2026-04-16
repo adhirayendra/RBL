@@ -13,21 +13,21 @@ export const SectionYoutube = () => {
       id: 1,
       title: "Perkenalkin\nRadio Budi luhur",
       description: "Radio komunitas yang telah menjadi suara khas Universitas Budi Luhur sejak 2005, hadir di frekuensi 107.7 FM dan dapat dinikmati secara global melalui platform streaming di www.radiobudiluhur.com atau di RCTI+",
-      thumbnail: "/image/Youtube/8zVeXiPuWog-HD 1.png",
+      thumbnail: "/image/Youtube/perkenalkin.webp",
       link: "https://www.youtube.com/watch?v=8zVeXiPuWog",
       recommendations: [
         {
           title: "Get To Know Radio Budi Luhur",
           date: "21 Okt 2024",
           duration: "1:48",
-          thumbnail: "/image/Youtube/8zVeXiPuWog-HD 1.png",
+          thumbnail: "/image/Youtube/perkenalkin.webp",
           link: "https://www.youtube.com/watch?v=8zVeXiPuWog"
         },
         {
           title: "Radio Budi Luhur Video Profile 2021: New Era",
           date: "26 Sep 2021",
           duration: "2:32",
-          thumbnail: "/image/Youtube/rEASOO9Kk3A-HD 2.png",
+          thumbnail: "/image/Youtube/perkenalkin.webp",
           link: "https://www.youtube.com/watch?v=rEASOO9Kk3A"
         },
         {
@@ -44,28 +44,28 @@ export const SectionYoutube = () => {
       id_content: "Nyobrak",
       title: "Nyobrak:\nEksistensi Radio",
       description: "Membahas perjalanan dan eksistensi radio komunitas kampus di era digital bersama para pakar dan praktisi media lokal.",
-      thumbnail: "/image/Youtube/rEASOO9Kk3A-HD 2.png",
+      thumbnail: "/image/Youtube/eps 1 ngobrak .webp",
       link: "https://www.youtube.com/watch?v=rEASOO9Kk3A",
       recommendations: [
         {
           title: "NGOBRAKS Eps. 2 Saat \"NORMAL\",  jadi \"BEBAN?!\"",
           date: "15 Jan 2024",
           duration: "12:30",
-          thumbnail: "/image/Youtube/image 24.png",
+          thumbnail: "/image/Youtube/eps 2 ngobrak.webp",
           link: "https://www.youtube.com/watch?v=rEASOO9Kk3A"
         },
         {
           title: "NGOBRAKS Eps. 3 KULIAH, MASA GITUH??!",
           date: "10 Feb 2024",
           duration: "08:45",
-          thumbnail: "/image/Youtube/image 25.png",
+          thumbnail: "/image/Youtube/eps 3 ngobrak.webp",
           link: "https://www.youtube.com/watch?v=8zVeXiPuWog"
         },
         {
           title: "Tawabal: Back To School",
           date: "24 May 2025",
           duration: "06:32",
-          thumbnail: "/image/Youtube/a2qeGP-UphY-HD.jpg",
+          thumbnail: "/image/Youtube/bts.webp",
           link: "https://www.youtube.com/watch?v=a2qeGP-UphY"
         }
       ]
@@ -75,21 +75,21 @@ export const SectionYoutube = () => {
       id_content: "Tanya Jawab Asal",
       title: "Tanya Jawab Asal:\nEdisi Ramadhan",
       description: "Segmen spesial Ramadhan yang penuh dengan tanya jawab seru dan penuh tawa bersama pengisi acara favorit kamu.",
-      thumbnail: "/image/Youtube/RCVi_MjLSy0-HD (1) 1.png",
+      thumbnail: "/image/Youtube/tawabal.webp",
       link: "https://www.youtube.com/watch?v=RCVi_MjLSy0",
       recommendations: [
         {
           title: "Behind the Scenes: Edisi Ramadhan",
           date: "20 Mar 2024",
           duration: "05:20",
-          thumbnail: "/image/Youtube/RCVi_MjLSy0-HD (1) 1.png",
+          thumbnail: "/image/Youtube/tawabal.webp",
           link: "https://www.youtube.com/watch?v=RCVi_MjLSy0"
         },
         {
           title: "Keseruan Buka Puasa Bersama RBL",
           date: "25 Mar 2024",
           duration: "04:15",
-          thumbnail: "/image/Youtube/kyHJg8smjzM-HD 1.png",
+          thumbnail: "/image/Youtube/tawabal.webp",
           link: "https://www.youtube.com/watch?v=kyHJg8smjzM"
         }
       ]
@@ -99,21 +99,21 @@ export const SectionYoutube = () => {
       id_content: "Now We Know",
       title: "Now We Know:\nProgram Edukasi",
       description: "Wawasan baru setiap hari! Temukan fakta-fakta unik yang belum kamu ketahui sebelumnya hanya di program Now We Know.",
-      thumbnail: "/image/Youtube/kyHJg8smjzM-HD 1.png",
+      thumbnail: "/image/Youtube/now we know.webp",
       link: "https://www.youtube.com/watch?v=kyHJg8smjzM",
       recommendations: [
         {
           title: "Fakta Unik Sejarah Radio",
           date: "05 Apr 2024",
           duration: "06:10",
-          thumbnail: "/image/Youtube/kyHJg8smjzM-HD 1.png",
+          thumbnail: "/image/Youtube/now we know.webp",
           link: "https://www.youtube.com/watch?v=kyHJg8smjzM"
         },
         {
           title: "Teknolgi di Balik Siaran Radio",
           date: "12 Apr 2024",
           duration: "07:30",
-          thumbnail: "/image/Youtube/RCVi_MjLSy0-HD (1) 1.png",
+          thumbnail: "/image/Youtube/now we know.webp",
           link: "https://www.youtube.com/watch?v=RCVi_MjLSy0"
         }
       ]
@@ -125,7 +125,7 @@ export const SectionYoutube = () => {
       {/* Top spacing and Tab Container */}
       <div className="w-full max-w-[1440px] relative h-[51px]">
         {/* Yellow Tab */}
-        <div className="w-80 h-13 left-[56px] top-0 absolute bg-[#FFDD00] rounded-tl-[35px] rounded-tr-[35px] z-30">
+        <div className="w-80 h-13 md:left-[56px] left-1/2 -translate-x-1/2 md:translate-x-0 top-0 absolute bg-[#FFDD00] rounded-tl-[35px] rounded-tr-[35px] z-30">
           <div className="w-full h-full flex items-center justify-center text-black text-2xl font-extrabold font-['DM_Sans']">
             Program Youtube
           </div>
@@ -135,38 +135,38 @@ export const SectionYoutube = () => {
       {/* Hero Section - Full Width Black Background */}
       <div className="w-full h-[525px] relative overflow-hidden bg-zinc-900">
         {/* Full-bleed Hero Image on the left */}
-        <div className="w-[calc(50%+256px)] h-[525px] absolute left-0 top-0">
+        <div className="w-full md:w-[calc(50%+256px)] h-[525px] absolute left-0 top-0">
           <Image
             src={videos[activeIndex].thumbnail}
             alt={videos[activeIndex].title}
             fill
             className="object-cover"
             priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw"
           />
         </div>
 
-        {/* Gradient Overlay - Optimized with multiple stops for a seamless transition 
-               Starts solid for the text area (35% from right) then fades smoothly into the image. */}
-        <div className="w-full h-full absolute inset-0 bg-gradient-to-l from-[#121212] from-35% via-[#121212]/95 via-40% via-[#121212]/50 via-10% to-transparent z-10 pointer-events-none" />
+        {/* Gradient Overlay - Optimized with multiple stops for a seamless transition */}
+        <div className="w-full h-full absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[#121212] from-35% via-[#121212]/95 via-45% via-[#121212]/50 via-10% to-transparent z-10 pointer-events-none" />
 
         {/* Content area */}
         {!showRecommended && (
-          <div className="absolute z-20 left-[976px] top-[34px] right-8">
-            <h1 className="text-white text-5xl font-black font-['DM_Sans'] tracking-tight leading-[1.1] mb-8">
+          <div className="absolute z-20 left-6 md:left-[976px] top-[100px] md:top-[34px] right-6 md:right-8">
+            <h1 className="text-white text-3xl md:text-5xl font-black font-['DM_Sans'] tracking-tight leading-[1.1] mb-4 md:mb-8">
               {videos[activeIndex].title.split('\n').map((line, i) => (
                 <span key={i} className="block">{line}</span>
               ))}
             </h1>
-            <p className="text-white text-xl font-medium font-['DM_Sans'] text-justify leading-relaxed max-w-[400px]">
+            <p className="text-white text-base md:text-xl font-medium font-['DM_Sans'] text-justify leading-relaxed max-w-[400px] line-clamp-4 md:line-clamp-none">
               {videos[activeIndex].description}
             </p>
 
             {/* Buttons */}
-            <div className="flex gap-4 mt-12">
+            <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-12">
               {/* PLAY */}
               <button
                 onClick={() => window.open(videos[activeIndex].link, '_blank')}
-                className="w-36 h-14 bg-[#2D5FFE] rounded-[46px] flex items-center justify-start px-2 relative group hover:scale-105 transition-transform cursor-pointer"
+                className="w-full sm:w-36 h-14 bg-[#2D5FFE] rounded-[46px] flex items-center justify-start px-2 relative group hover:scale-105 transition-transform cursor-pointer"
               >
                 <div className="w-11 h-11 bg-stone-900 rounded-full flex items-center justify-center">
                   <FaPlay className="text-white ml-0.5 text-sm" />
@@ -177,7 +177,7 @@ export const SectionYoutube = () => {
               {/* RECOMMENDED */}
               <button
                 onClick={() => setShowRecommended(true)}
-                className="w-56 h-14 bg-[#2D5FFE] rounded-[46px] flex items-center justify-center text-white text-2xl font-bold font-['DM_Sans'] hover:scale-105 transition-transform cursor-pointer"
+                className="w-full sm:w-56 h-14 bg-[#2D5FFE] rounded-[46px] flex items-center justify-center text-white text-2xl font-bold font-['DM_Sans'] hover:scale-105 transition-transform cursor-pointer"
               >
                 RECOMMENDED
               </button>
@@ -217,7 +217,13 @@ export const SectionYoutube = () => {
                     </div>
                   </div>
                   <div className="w-32 h-[72px] md:w-40 md:h-[90px] relative rounded-xl overflow-hidden flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
-                    <Image src={video.thumbnail} alt={video.title} fill className="object-cover" />
+                    <Image 
+                      src={video.thumbnail} 
+                      alt={video.title} 
+                      fill 
+                      className="object-cover" 
+                      sizes="(max-width: 768px) 128px, 160px"
+                    />
                   </div>
                 </div>
               ))}
@@ -226,50 +232,51 @@ export const SectionYoutube = () => {
         )}
       </div>
 
-      {/* Thumbnails Area - Centered below Hero */}
-      <div className="w-full max-w-[1440px] relative h-[300px] mt-2">
-        {/* Thumbnails */}
-        {[0, 1, 2, 3].map((i) => (
-          <div
-            key={i}
-            className="absolute top-[33px] cursor-pointer group transition-all"
-            style={{ left: `${33 + i * 346}px` }}
-            onClick={() => setActiveIndex(i)}
-          >
-            {/* The Image */}
-            <div className="w-80 h-48 overflow-hidden rounded-lg">
-              <img
-                src={videos[i].thumbnail}
-                alt=""
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
+      {/* Thumbnails Area - Improved Responsive Layout */}
+      <div className="w-full max-w-[1440px] px-6 md:px-[33px] mt-8">
+        <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 md:gap-[26px]">
+          {videos.map((video, i) => (
+            <div
+              key={video.id}
+              className="relative cursor-pointer group transition-all"
+              onClick={() => setActiveIndex(i)}
+            >
+              {/* The Image */}
+              <div className={`w-[calc(50vw-36px)] md:w-80 h-32 md:h-48 overflow-hidden rounded-lg relative transition-all duration-300 ${activeIndex === i ? 'scale-[1.02]' : ''}`}>
+                <Image
+                  src={video.thumbnail}
+                  alt={video.title}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, 320px"
+                />
+              </div>
+
+              {/* Active Border */}
+              {activeIndex === i && (
+                <div className="absolute -inset-[2.5px] border-[5px] border-[#FFDD00] rounded-lg pointer-events-none z-30 transition-all duration-300" />
+              )}
+
+              {/* Indicator Arrow */}
+              {activeIndex === i && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-[#FFDD00] z-30" />
+              )}
             </div>
+          ))}
+        </div>
 
-            {/* Active Border */}
-            {activeIndex === i && (
-              <div className="w-[325px] h-[197px] absolute -left-[2.5px] -top-[2.5px] border-[5px] border-[#FFDD00] pointer-events-none z-30" />
-            )}
-
-            {/* Indicator Arrow */}
-            {activeIndex === i && (
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-[#FFDD00] z-30" />
-            )}
-          </div>
-        ))}
-
-        {/* Pagination Dots */}
-        <div className="absolute top-[248px] left-1/2 -translate-x-1/2 flex items-center gap-6">
-          {[0, 1, 2].map((i) => {
-            const isActive = (activeIndex === 0 && i === 0) || (activeIndex === 1 && i === 1) || (activeIndex >= 2 && i === 2);
-            return (
-              <div
-                key={i}
-                className={`w-6 h-6 rounded-full transition-colors duration-300 ${isActive ? 'bg-[#FFDD00]/95' : 'bg-white'}`}
-              />
-            );
-          })}
+        {/* Pagination/Scroll Indicator */}
+        <div className="flex items-center justify-center gap-6 mt-12">
+          {videos.map((_, i) => (
+            <div
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`w-4 h-4 md:w-6 md:h-6 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? 'bg-[#FFDD00]' : 'bg-white hover:bg-white/80'}`}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 };
+
