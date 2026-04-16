@@ -3,7 +3,7 @@ import { FaPlay } from "react-icons/fa";
 
 export default function ProgramHero() {
   return (
-    <section className="relative w-full min-h-[500px] md:h-[600px] flex items-center justify-end bg-zinc-900 overflow-hidden">
+    <section className="relative w-full min-h-[500px] md:h-[600px] flex items-center justify-end bg-blue-900 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

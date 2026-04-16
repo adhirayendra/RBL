@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +29,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
- return (
+  return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} h-full antialiased`}
@@ -39,9 +39,7 @@ export default function RootLayout({
         <Navbar />
 
         {/* 2. Bungkus children dengan main/div flex-1 supaya Footer terdorong ke bawah */}
-        <main className="flex-1">
-          {children}
-        </main>
+        <main className="flex-1">{children}</main>
 
         {/* 3. Taruh Footer di sini */}
         <Footer />

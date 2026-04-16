@@ -1,15 +1,16 @@
-import Hero from "./components/Hero";
-import ProgramSection from "./components/ProgramSection";
-import ArticleSection from "./components/ArticleSection";
-import TopChart from "./components/TopChart";
+// Import Section
+import Hero from "./sections/HomeSection/Hero";
+import ProgramSection from "./sections/HomeSection/ProgramSection";
+import ArticleSection from "./sections/HomeSection/ArticleSection";
+import TopChart from "./sections/HomeSection/TopChart";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-slate-50 relative selection:bg-blue-300">
+    <>
       <Hero />
       <ProgramSection />
       <ArticleSection />
       <TopChart />
-    </main>
+    </>
   );
 }

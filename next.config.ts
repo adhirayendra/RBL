@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
         hostname: "i.scdn.co",
       },
     ],
+    qualities: [25, 50, 75, 100], // Quality
   },
 };
 

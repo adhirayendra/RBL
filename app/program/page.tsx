@@ -1,13 +1,11 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import ProgramHero from "../components/ProgramHero";
-import { SectionYoutube } from "../components/SectionYoutube";
-import ProgramSpotify from "../components/ProgramSpotify";
-import ProgramSection from "../components/ProgramSection";
+import ProgramHero from "../sections/ProgramSection/ProgramHero";
+import { SectionYoutube } from "../sections/ProgramSection/SectionYoutube";
+import ProgramSpotify from "../sections/ProgramSection/ProgramSpotify";
+import ProgramSection from "../sections/HomeSection/ProgramSection";
 
 export const metadata = {
-  title: 'Program - Radio Budi Luhur',
-  description: 'Program Radio Budi Luhur',
+  title: "Program - Radio Budi Luhur",
+  description: "Program Radio Budi Luhur",
 };
 
 export default function ProgramPage() {
