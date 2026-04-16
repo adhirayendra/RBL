@@ -4,19 +4,18 @@ import RadioWidget from "./RadioWidget";
 export default function StreamingHero() {
   return (
     <section className="relative w-full min-h-[785px] flex items-center justify-center overflow-hidden bg-slate-50">
-      
+
       {/* Background Gradient (Layered behind the image) */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-blue-600 to-stone-50" />
-      
+
       {/* Base Background Image (Layered in front of gradient) */}
       <div className="absolute inset-0 z-10 w-full h-[785px]">
-        <Image 
+        <Image
           src="/image/backgroundstream.webp" // Using the existing hero image as background or placehold
           alt="Streaming Background"
           fill
           className="object-cover object-top"
-          priority
-          quality={90}
+          unoptimized={true}
           sizes="100vw"
         />
       </div>
