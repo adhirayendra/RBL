@@ -36,7 +36,7 @@ export default function Navbar() {
         <div className="flex justify-end items-center gap-4">
           <div className="hidden md:block">
             <Link 
-              href="#" 
+              href="/streaming" 
               aria-label="Listen to live streaming"
               className="bg-gradient-to-br from-[#FFDD00] to-[#C1A600] text-black font-extrabold px-6 py-2.5 rounded-full flex items-center gap-3 hover:opacity-90 transition-all shadow-lg uppercase tracking-wider text-xs"
             >

@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaGoogle, FaTiktok } from "react-icons/fa";
+import { FaInstagram, FaYoutube, FaGoogle, FaTiktok } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   const socialIcons = [
-    { icon: <FaFacebookF />, link: "#" },
-    { icon: <FaTwitter />, link: "#" },
+    { icon: <FaXTwitter />, link: "#" },
     { icon: <FaInstagram />, link: "#" },
     { icon: <FaYoutube />, link: "#" },
     { icon: <FaGoogle />, link: "#" },
@@ -62,7 +62,7 @@ export default function Footer() {
       <div className="relative z-20 w-full flex flex-col items-center pb-12 mt-[-60px] md:mt-[-100px] gap-8">
         <div className="flex items-center justify-center gap-3 md:gap-5">
           {socialIcons.map((social, i) => {
-            const platformNames = ["Facebook", "Twitter", "Instagram", "Youtube", "Google", "Tiktok"];
+            const platformNames = ["Twitter", "Instagram", "Youtube", "Google", "Tiktok"];
             const platform = platformNames[i] || "Social Media";
             return (
               <a

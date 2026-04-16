@@ -161,7 +161,7 @@ export default function ProgramSpotify() {
       />
 
       <section className="w-full bg-[#2C2C2C] relative pt-16 pb-12 mt-12 md:mt-16">
-        <div className="absolute top-0 left-6 md:left-16 -translate-y-[98%] bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[20px] md:rounded-t-[30px]">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-[56px] -translate-y-[98%] bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[20px] md:rounded-t-[30px]">
           <h2 className="text-black text-lg md:text-xl font-extrabold font-['DM_Sans'] tracking-wide">Program Spotify</h2>
         </div>
 
@@ -225,8 +225,8 @@ export default function ProgramSpotify() {
               </button>
 
               <div className="hidden lg:flex items-center gap-2 group ml-2">
-                <button 
-                  onClick={() => setIsMuted(!isMuted)} 
+                <button
+                  onClick={() => setIsMuted(!isMuted)}
                   aria-label={isMuted ? "Unmute volume" : "Mute volume"}
                   className="text-gray-400 hover:text-white"
                 >
@@ -310,7 +310,7 @@ export default function ProgramSpotify() {
       </section>
 
       <section className="w-full bg-[#2D5FFE] pb-15 pt-8">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex gap-8 md:gap-10 overflow-x-auto hide-scrollbar pb-10 pt-10 scroll-smooth snap-x" role="tablist" aria-label="Spotify Series Programs">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex flex-wrap md:flex-nowrap justify-center gap-8 md:gap-10 pb-10 pt-10 scroll-smooth" role="tablist" aria-label="Spotify Series Programs">
           {episodes.map((episode, i) => (
             <div
               key={i}
@@ -355,14 +355,14 @@ export default function ProgramSpotify() {
         </div>
 
         {/* Dynamic Pagination Dots */}
-        <div className="flex justify-center items-center gap-5 mt-4" role="navigation" aria-label="Series Pagination">
+        <div className="flex justify-center items-center gap-6 mt-12" role="navigation" aria-label="Series Pagination">
           {episodes.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
               aria-label={`Go to series ${i + 1}`}
               aria-current={activeIndex === i ? 'step' : undefined}
-              className={`w-4 h-4 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? 'bg-[#FFDD00]' : 'bg-white hover:bg-white/80'}`}
+              className={`w-4 h-4 md:w-6 md:h-6 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? 'bg-[#FFDD00]' : 'bg-white hover:bg-white/80'}`}
             ></button>
           ))}
         </div>
