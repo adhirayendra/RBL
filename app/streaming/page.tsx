@@ -1,8 +1,8 @@
 import StreamingHero from "../components/StreamingHero";
 
 export const metadata = {
-  title: 'Streaming - Radio Budi Luhur',
-  description: 'Streaming Radio Budi Luhur Live',
+  title: "Streaming - Radio Budi Luhur",
+  description: "Streaming Radio Budi Luhur Live",
 };
 
 export default function StreamingPage() {
