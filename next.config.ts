@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "c2.siar.us",
+      },
+      {
+        protocol: "https",
         hostname: "image-cdn-ak.spotifycdn.com",
       },
       {
@@ -18,6 +22,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "i.scdn.co",
+      },
+      {
+        protocol: "https",
+        hostname: "coverartarchive.org",
       },
     ],
     qualities: [25, 50, 75, 100], // Quality

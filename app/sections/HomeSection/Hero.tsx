@@ -14,8 +14,7 @@ export default function Hero() {
           fill 
           className="object-cover" 
           priority
-          quality={70}
-          unoptimized={true}
+          quality={80}
           sizes="(max-width: 768px) 100vw, 1920px"
         />
       </div>

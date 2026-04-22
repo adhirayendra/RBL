@@ -1,18 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import NavbarList from "@/app/assets/NavbarList";
+import { navbarItems } from "@/app/assets/NavbarList";
 
 export default function Navbar() {
   return (
     <nav className="absolute top-0 left-0 w-full z-50 py-6">
       {/* Container dengan Grid 3 Kolom */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex justify-between items-center">
+      <div className="max-w-360 mx-auto px-6 md:px-16 flex justify-between items-center">
         {/* KOLOM 1: Navigasi (Hanya muncul di Desktop) */}
         <ul className="hidden md:flex items-center gap-8 text-[#FFDD00] font-bold text-[15px] tracking-widest">
-          {["Home", "Program", "Podcast", "Event", "About Us"].map((item) => (
-            <li key={item}>
-              <NavbarList link={`/${item.toLowerCase()}`} label={item} />
+          {navbarItems.map((item, index) => (
+            <li key={index}>
+              <Link
+                href={item.href}
+                className="hover:text-white transition-colors"
+              >
+                {item.name}
+              </Link>
             </li>
           ))}
         </ul>
@@ -26,6 +31,9 @@ export default function Navbar() {
               width={60}
               height={60}
               className="object-contain hover:scale-110 transition-transform"
+              priority
+              quality={80}
+              sizes="60px"
             />
           </Link>
         </div>
@@ -43,9 +51,12 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Icon (Muncul di HP sebagai ganti Menu Kiri) */}
-          <div className="md:hidden text-[#FFDD00] font-bold border-2 border-[#FFDD00] px-3 py-1 rounded">
+          <button
+            aria-label="Open navigation menu"
+            className="md:hidden text-[#FFDD00] font-bold border-2 border-[#FFDD00] px-3 py-1 rounded hover:bg-[#FFDD00] hover:text-black transition-colors"
+          >
             MENU
-          </div>
+          </button>
         </div>
       </div>
     </nav>

@@ -11,6 +11,9 @@ export default function ProgramHero() {
           alt="Radio Budi Luhur Hero"
           fill
           className="object-cover"
+          priority
+          quality={80}
+          sizes="(max-width: 768px) 100vw, 1920px"
         />
         {/* Dark overlay specifically tailored for the right text */}
         <div className="absolute inset-0 bg-gradient-to-l from-zinc-900 via-zinc-900/60 to-transparent" />
@@ -28,13 +31,19 @@ export default function ProgramHero() {
           </p>
 
           <div className="flex flex-wrap justify-start gap-4">
-            <button className="bg-[#1C3FAA] shadow-lg text-white font-bold text-xs md:text-sm px-6 py-2.5 rounded-[46px] flex items-center gap-3 hover:bg-blue-700 transition-colors border border-blue-400/30">
+            <button 
+              aria-label="Play program audio"
+              className="bg-[#1C3FAA] shadow-lg text-white font-bold text-xs md:text-sm px-6 py-2.5 rounded-[46px] flex items-center gap-3 hover:bg-blue-700 transition-colors border border-blue-400/30"
+            >
               <div className="w-6 h-6 md:w-7 md:h-7 bg-zinc-900 rounded-full flex items-center justify-center">
                 <FaPlay className="text-[#1C3FAA] ml-0.5 text-[10px]" />
               </div>
               PLAY
             </button>
-            <button className="bg-[#1C3FAA] shadow-lg text-white font-bold text-xs md:text-sm px-8 py-2.5 rounded-[46px] hover:bg-blue-700 transition-colors border border-blue-400/30">
+            <button 
+              aria-label="Show recommended programs"
+              className="bg-[#1C3FAA] shadow-lg text-white font-bold text-xs md:text-sm px-8 py-2.5 rounded-[46px] hover:bg-blue-700 transition-colors border border-blue-400/30"
+            >
               RECOMMENDED
             </button>
           </div>

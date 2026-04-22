@@ -18,7 +18,7 @@ body {
 }
 
 .program-swiper .swiper-pagination-bullet {
-  background-color: #ACA4A4;
+  background-color: #aca4a4;
   opacity: 1;
 }
 
@@ -49,8 +49,8 @@ body {
 }
 
 .playlist-scroll {
-  -ms-overflow-style: none;  /* IE & Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -83,13 +83,17 @@ body {
 
 /* Light reflection effects */
 .album-cover-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 10%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 1%, transparent 50%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4) 1%,
+    transparent 50%
+  );
   pointer-events: none;
   z-index: 3;
 }
@@ -103,10 +107,20 @@ body {
   height: var(--vinyl-size);
   margin-top: calc(var(--vinyl-size) / -2);
   background:
-    conic-gradient(from 50deg at 50% 50%,
-      transparent 46%, rgba(255, 255, 255, 0.05) 48%, rgba(255, 255, 255, 0.1) 51%, transparent 56%),
-    conic-gradient(from 225deg at 50% 50%,
-      transparent 46%, rgba(255, 255, 255, 0.05) 48%, rgba(255, 255, 255, 0.1) 51%, transparent 56%),
+    conic-gradient(
+      from 50deg at 50% 50%,
+      transparent 46%,
+      rgba(255, 255, 255, 0.05) 48%,
+      rgba(255, 255, 255, 0.1) 51%,
+      transparent 56%
+    ),
+    conic-gradient(
+      from 225deg at 50% 50%,
+      transparent 46%,
+      rgba(255, 255, 255, 0.05) 48%,
+      rgba(255, 255, 255, 0.1) 51%,
+      transparent 56%
+    ),
     repeating-radial-gradient(circle, #222 0%, #111 2px, #222 4px);
   border-radius: 50%;
   z-index: 1;
@@ -136,6 +150,16 @@ body {
   transform: translateX(var(--vinyl-translate)) rotate(var(--vinyl-rotate));
 }
 
+/* Menghapus scrollbar */
+.hidden-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .playlist-row {
@@ -157,6 +181,40 @@ body {
   .album-vinyl {
     --album-size: 60px;
     --vinyl-size: 50px;
-    --vinyl-translate: 25px;
   }
+}
+
+/* ===== Recommended Panel Styles ===== */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

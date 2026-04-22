@@ -10,9 +10,10 @@ export const metadata = {
 
 export default function ProgramPage() {
   return (
-    <div className="w-full flex flex-col font-['DM_Sans'] bg-white">
-      <ProgramHero />
-      <div className="flex flex-col">
+    <div className="w-full flex flex-col font-['DM_Sans'] bg-[#2D5FFE]">
+      <div className="flex flex-col pt-24 md:pt-32">
+        {" "}
+        {/* Increased PT to account for absolute navbar and tab overlap */}
         <SectionYoutube />
         <ProgramSpotify />
         <ProgramSection variant="program" />

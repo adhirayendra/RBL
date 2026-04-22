@@ -24,7 +24,7 @@ export default function ProgramSection({ variant = "home" }: ProgramSectionProps
 
   return (
     <section className={`w-full relative py-20 ${isProgramPage ? 'bg-[#1C1C1C]' : 'bg-gradient-to-t from-[#2D5FFE] to-[#0A31AD] text-white rounded-t-[60px]'}`}>
-      
+
       {isProgramPage ? (
         /* Yellow Tab for Program Page */
         <div className="absolute top-0 left-6 md:left-16 -translate-y-full bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[25px] md:rounded-t-[35px]">

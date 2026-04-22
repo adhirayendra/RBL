@@ -35,11 +35,21 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Skip to Content Link for Accessibility */}
+        <a
+          href="#main_content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:bg-[#FFDD00] focus:text-black focus:px-4 focus:py-2 focus:rounded-md focus:font-bold focus:shadow-xl transition-all"
+        >
+          Skip to Content
+        </a>
+
         {/* 1. Taruh Navbar di sini */}
         <Navbar />
 
         {/* 2. Bungkus children dengan main/div flex-1 supaya Footer terdorong ke bawah */}
-        <main className="flex-1">{children}</main>
+        <main id="main_content" className="flex-1">
+          {children}
+        </main>
 
         {/* 3. Taruh Footer di sini */}
         <Footer />

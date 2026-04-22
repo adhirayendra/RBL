@@ -3,7 +3,7 @@ Struktur folder sudah saya perbaiki dengan cara memisahkan setiap component di f
 Daftar Folder yang ditambahkan:
 1. Components
     - common [Digunakan untuk component yang sering digunakan kembali (Button, Card, Input, dll)]
-    - layout [Digunakan untuk Navbar & Footer]
+    - layout [Digunakan untuk Navbar, sidebar, dan Footer]
 2. data [Digunakan untuk management data]
     - Article.ts [Management article]
     - LiveShow.ts [Management Siaran]

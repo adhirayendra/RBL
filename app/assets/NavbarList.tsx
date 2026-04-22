@@ -1,15 +1,12 @@
-import Link from "next/link";
-
-export default function NavbarList({
-  link,
-  label,
-}: {
-  link: string;
-  label: string;
-}) {
-  return (
-    <Link href={link} className="hover:text-white transition-colors">
-      {label}
-    </Link>
-  );
+interface NavbarItem {
+  name: string;
+  href: string;
 }
+
+export const navbarItems: NavbarItem[] = [
+  { name: "HOME", href: "/" },
+  { name: "ARTICLE", href: "/article" },
+  { name: "EVENTS", href: "/events" },
+  { name: "PROGRAM", href: "/program" },
+  { name: "ABOUT US", href: "/about" }
+];
