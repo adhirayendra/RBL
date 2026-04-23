@@ -26,7 +26,7 @@ export default function Footer() {
           // dan object-bottom agar bagian bawah ilustrasi (area kuning) tetap terlihat.
           className="object-cover object-bottom"
           priority
-          quality={80}
+          quality={70}
           sizes="(max-width: 768px) 100vw, 1525px"
         />
 
