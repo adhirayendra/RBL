@@ -31,7 +31,7 @@ export default function ProgramHero() {
           </p>
 
           <div className="flex flex-wrap justify-start gap-4">
-            <button 
+            <button
               aria-label="Play program audio"
               className="bg-[#1C3FAA] shadow-lg text-white font-bold text-xs md:text-sm px-6 py-2.5 rounded-[46px] flex items-center gap-3 hover:bg-blue-700 transition-colors border border-blue-400/30"
             >
@@ -40,7 +40,7 @@ export default function ProgramHero() {
               </div>
               PLAY
             </button>
-            <button 
+            <button
               aria-label="Show recommended programs"
               className="bg-[#1C3FAA] shadow-lg text-white font-bold text-xs md:text-sm px-8 py-2.5 rounded-[46px] hover:bg-blue-700 transition-colors border border-blue-400/30"
             >

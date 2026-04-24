@@ -10,37 +10,37 @@ export default function ArticleSection() {
       id: 1,
       title: "4 Gol Tanpa Balas! Bukti Indonesia Siap Juara FIFA Series 2026",
       desc: "Timnas Indonesia lagi bener-bener nunjukin kelasnya pas lawan Saint ...",
-      img: "/image/Articles/Rectangle 17.png"
+      img: "/image/articles/Rectangle 17.png"
     },
     {
       id: 2,
       title: "Ancaman Penutupan Selat Hormuz dan Risiko Krisis Energi Dunia",
       desc: "Memanasnya konflik antara Amerika Serikat dan Israel melawan Iran kembali menyoroti ...",
-      img: "/image/Articles/Rectangle 18.png"
+      img: "/image/articles/Rectangle 18.png"
     },
     {
       id: 3,
       title: "Kebanggaan Indonesia! Veda Ega Pratama Raih Podium Dalam Ajang Moto3",
       desc: "Pembalap muda asal Indonesia, Veda Ega Pratama, kembali mencuri perhatian ...",
-      img: "/image/Articles/Rectangle 19.png"
+      img: "/image/articles/Rectangle 19.png"
     },
     {
       id: 4,
       title: "4 Gol Tanpa Balas! Bukti Indonesia Siap Juara FIFA Series 2026",
       desc: "Timnas Indonesia lagi bener-bener nunjukin kelasnya pas lawan Saint ...",
-      img: "/image/Articles/sport/Rectangle 17.png"
+      img: "/image/articles/sport/Rectangle-17.png"
     },
     {
       id: 5,
       title: "Ancaman Penutupan Selat Hormuz dan Risiko Krisis Energi Dunia",
       desc: "Memanasnya konflik antara Amerika Serikat dan Israel melawan Iran kembali menyoroti ...",
-      img: "/image/Articles/Rectangle 18.png"
+      img: "/image/articles/Rectangle 18.png"
     },
     {
       id: 6,
       title: "Kebanggaan Indonesia! Veda Ega Pratama Raih Podium Dalam Ajang Moto3",
       desc: "Pembalap muda asal Indonesia, Veda Ega Pratama, kembali mencuri perhatian ...",
-      img: "/image/Articles/Rectangle 19.png"
+      img: "/image/articles/Rectangle 19.png"
     }
   ];
 

@@ -227,11 +227,11 @@ export const SectionYoutube = () => {
                     </div>
                   </div>
                   <div className="w-32 h-[72px] md:w-40 md:h-[90px] relative rounded-xl overflow-hidden flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
-                    <Image 
-                      src={video.thumbnail} 
-                      alt="" 
-                      fill 
-                      className="object-cover" 
+                    <Image
+                      src={video.thumbnail}
+                      alt=""
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 128px, 160px"
                     />
                   </div>
