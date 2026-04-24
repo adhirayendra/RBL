@@ -1,5 +1,5 @@
-import PlaylistClient from "../programSection/PlaylistClient";
-import type { TrackItem } from "../programSection/PlaylistClient";
+import PlaylistClient from "../ProgramSection/PlaylistClient";
+import type { TrackItem } from "../ProgramSection/PlaylistClient";
 
 // DAFTAR LAGU MANUAK (Silakan edit di bawah ini)
 const chartTracks: TrackItem[] = [
