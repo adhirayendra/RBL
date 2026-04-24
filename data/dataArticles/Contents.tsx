@@ -1,5 +1,6 @@
 export interface ContentArticle {
   id: number;
+  thumbnailUrl?: string;
   content: ContentBlock[];
 }
 
@@ -110,7 +111,7 @@ export const Contents: ContentArticle[] = [
       },
       {
         type: "image",
-        url: "/image/articles/sport/Rectangle 17.png",
+        url: "/image/articles/sport/Rectangle-17.png",
         alt: "Para pemain Timnas Indonesia merayakan kemenangan di tengah lapangan",
       },
       {
@@ -119,7 +120,7 @@ export const Contents: ContentArticle[] = [
       },
       {
         type: "image",
-        url: "/image/articles/sport/keterangan dari coach.jpg",
+        url: "/image/articles/sport/keterangan-dari-coach.jpg",
         alt: "Coach Andi memberikan keterangan pers setelah pertandingan kualifikasi",
       },
       {

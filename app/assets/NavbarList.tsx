@@ -8,5 +8,5 @@ export const navbarItems: NavbarItem[] = [
   { name: "ARTICLE", href: "/article" },
   { name: "EVENTS", href: "/events" },
   { name: "PROGRAM", href: "/program" },
-  { name: "ABOUT US", href: "/about" }
+  { name: "ABOUT US", href: "/about" },
 ];

@@ -73,7 +73,7 @@ export default function RadioWidget() {
 
   return (
     <div className="relative w-full max-w-[800px] h-auto md:h-[240px] mx-auto font-['DM_Sans'] flex justify-center">
-      
+
       {/* Audio Element */}
       <audio 
         ref={audioRef} 

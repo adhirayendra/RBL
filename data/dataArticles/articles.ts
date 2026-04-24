@@ -1,4 +1,4 @@
-interface Article {
+export interface Article {
   id: number;
   thumbnailUrl: string;
   title: string;
@@ -7,11 +7,17 @@ interface Article {
 }
 
 // Fungsi untuk mengambil judul Artikel
-export default function getTitleContentById(id: string): string | null {
+export function getTitleContentById(id: string): string | null {
   const numId = parseInt(id, 10);
   const article = articles.find((article) => article.id === numId);
 
   return article ? article.title : null;
+}
+
+// Fungsi untuk mengambil seluruh metadata Artikel
+export default function getArticleById(id: string): Article | null {
+  const numId = parseInt(id, 10);
+  return articles.find((article) => article.id === numId) || null;
 }
 
 export const articles: Article[] = [
@@ -24,28 +30,28 @@ export const articles: Article[] = [
   },
   {
     id: 1,
-    thumbnailUrl: "/image/articles/one piece elbaf.jpg",
+    thumbnailUrl: "/image/articles/one-piece-elbaf.jpg",
     title: "One Piece Season 2 Episode 1: Elbaf Arc Dimulai Tanggal?",
     desc: "One Piece adalah salah satu serial anime dan manga paling populer di dunia...",
     category: "lo-ok",
   },
   {
     id: 2,
-    thumbnailUrl: "/image/articles/Top 10 AI.jpg",
+    thumbnailUrl: "/image/articles/top-10-ai.jpg",
     title: "Top 10 AI Terbaik di Tahun 2026 ChatGPT Tidak Masuk Daftar",
     desc: "Tahun 2026 telah menyaksikan perkembangan pesat dalam bidang kecerdasan buatan (AI)...",
     category: "hard-news",
   },
   {
     id: 3,
-    thumbnailUrl: "/image/articles/one piece elbaf.jpg",
+    thumbnailUrl: "/image/articles/one-piece-elbaf.jpg",
     title: "One Piece Season 2 Episode 1: Elbaf Arc Dimulai Tanggal?",
     desc: "Salah satu arc yang paling dinantikan adalah Elbaf Arc...",
     category: "game",
   },
   {
     id: 4,
-    thumbnailUrl: "/image/articles/Top 10 AI.jpg",
+    thumbnailUrl: "/image/articles/top-10-ai.jpg",
     title: "Top 10 AI Terbaik di Tahun 2026 ChatGPT Tidak Masuk Daftar",
     desc: "Tahun 2026 telah menyaksikan perkembangan pesat dalam bidang kecerdasan buatan (AI)...",
     category: "hard-news",
@@ -66,14 +72,14 @@ export const articles: Article[] = [
   },
   {
     id: 7,
-    thumbnailUrl: "/image/articles/one piece elbaf.jpg",
+    thumbnailUrl: "/image/articles/one-piece-elbaf.jpg",
     title: "One Piece Season 2 Episode 1: Elbaf Arc Dimulai Tanggal?",
     desc: "Petualangan ini akan menghadirkan tantangan baru di Elbaf...",
     category: "lo-ok",
   },
   {
     id: 8,
-    thumbnailUrl: "/image/articles/one piece elbaf.jpg",
+    thumbnailUrl: "/image/articles/one-piece-elbaf.jpg",
     title: "One Piece Season 2 Episode 1: Elbaf Arc Dimulai Tanggal?",
     desc: "Petualangan ini akan menghadirkan tantangan baru...",
     category: "sport",
@@ -81,7 +87,7 @@ export const articles: Article[] = [
   {
     id: 9,
     category: "sport",
-    thumbnailUrl: "/image/articles/sport/Rectangle 17.png",
+    thumbnailUrl: "/image/articles/sport/Rectangle-17.png",
     title: "Timas Lolos Kualifikasi Piala Dunia 2026, Ini Kata Pelatih",
     desc: "Tim nasional Indonesia berhasil lolos ke babak kualifikasi Piala Dunia 2026...",
   },

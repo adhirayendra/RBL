@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { articles } from "@/data/dataArticles/articles";
 import ArticleCategory from "./ArticleCategory";
@@ -54,13 +55,15 @@ export default function ArticleList() {
               >
                 <Link href={`/article/read/${article.id}`}>
                   {/* Container Gambar */}
-                  <div className="relative w-full overflow-hidden rounded-lg mb-4">
-                    <img
+                  <div className="relative w-full aspect-video overflow-hidden rounded-lg mb-4">
+                    <Image
                       src={article.thumbnailUrl}
                       alt={article.title}
-                      className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    <span className="absolute bottom-0 right-0 text-sm md:text-base text-black bg-amber-300 rounded-tl-2xl font-bold px-4 py-2">
+                    <span className="absolute bottom-0 right-0 text-sm md:text-base text-black bg-amber-300 rounded-tl-2xl font-bold px-4 py-2 z-10">
                       Read More
                     </span>
                   </div>

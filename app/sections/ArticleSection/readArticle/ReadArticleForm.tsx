@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ContentArticle } from "@/data/dataArticles/Contents";
 
 export default function ReadArticleForm({
@@ -15,6 +16,17 @@ export default function ReadArticleForm({
           {title}
         </h1>
 
+        {/* Thumbnail Artikel */}
+        <div className="relative w-full aspect-video mb-8">
+          <Image
+            src={contents.thumbnailUrl || "/image/placeholder.jpg"}
+            alt={title}
+            fill
+            className="rounded-xl shadow-md object-cover"
+            priority
+          />
+        </div>
+
         {/* Content Artikel */}
         <div className="space-y-8">
           {contents.content.map((item: any, index: number) => (
@@ -25,11 +37,14 @@ export default function ReadArticleForm({
                 </p>
               ) : (
                 <figure className="my-10">
-                  <img
-                    src={item.url}
-                    alt={item.alt}
-                    className="w-full h-auto rounded-xl shadow-md object-cover"
-                  />
+                  <div className="relative w-full aspect-video">
+                    <Image
+                      src={item.url}
+                      alt={item.alt}
+                      fill
+                      className="rounded-xl shadow-md object-cover"
+                    />
+                  </div>
                   {item.alt && (
                     <figcaption className="text-center text-sm text-gray-500 mt-3 italic">
                       {item.alt}
