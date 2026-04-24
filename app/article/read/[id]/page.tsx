@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 
-import ReadArticleForm from "@/app/sections/ArticleSection/readArticle/ReadArticleForm";
+import ReadArticleForm from "@/app/sections/articleSection/readArticle/ReadArticleForm";
 import GetContentById from "@/data/dataArticles/Contents";
 import getTitleContentById from "@/data/dataArticles/articles";
 
