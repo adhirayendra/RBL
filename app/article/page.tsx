@@ -1,4 +1,4 @@
-import ArticleList from "../sections/ArticleSection/ArticleList";
+import ArticleList from "../sections/articleSection/ArticleList";
 
 export default function ArticlePage() {
   return (

@@ -52,31 +52,30 @@ export default function ArticleList() {
                 key={article.id}
                 className="group flex flex-col cursor-pointer h-full"
               >
-                {/* Container Gambar */}
-                <div className="relative w-full overflow-hidden rounded-lg mb-4">
-                  <img
-                    src={article.thumbnail.thumbnailUrl}
-                    alt={article.thumbnail.title}
-                    className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <span className="absolute bottom-0 right-0 text-sm md:text-base text-black bg-amber-300 rounded-tl-2xl font-bold px-4 py-2">
-                    Read More
-                  </span>
-                </div>
+                <Link href={`/article/read/${article.id}`}>
+                  {/* Container Gambar */}
+                  <div className="relative w-full overflow-hidden rounded-lg mb-4">
+                    <img
+                      src={article.thumbnailUrl}
+                      alt={article.title}
+                      className="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <span className="absolute bottom-0 right-0 text-sm md:text-base text-black bg-amber-300 rounded-tl-2xl font-bold px-4 py-2">
+                      Read More
+                    </span>
+                  </div>
 
-                {/* Konten Teks */}
-                <div className="flex flex-col gap-2 grow">
-                  <Link
-                    href={`/article/read/${article.id}`}
-                    className="text-white text-xl md:text-2xl font-bold group-hover:underline line-clamp-2"
-                  >
-                    {article.thumbnail.title}
-                  </Link>
+                  {/* Konten Teks */}
+                  <div className="flex flex-col gap-2 grow">
+                    <h2 className="text-white text-xl md:text-2xl font-bold group-hover:underline line-clamp-2">
+                      {article.title}
+                    </h2>
 
-                  <p className="text-gray-300 line-clamp-3 text-sm md:text-base">
-                    {article.thumbnail.desc}
-                  </p>
-                </div>
+                    <p className="text-gray-300 line-clamp-3 text-sm md:text-base">
+                      {article.desc}
+                    </p>
+                  </div>
+                </Link>
               </li>
             ))
           ) : (
