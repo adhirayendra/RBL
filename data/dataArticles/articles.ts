@@ -6,20 +6,6 @@ export interface Article {
   category: string;
 }
 
-// Fungsi untuk mengambil judul Artikel
-export function getTitleContentById(id: string): string | null {
-  const numId = parseInt(id, 10);
-  const article = articles.find((article) => article.id === numId);
-
-  return article ? article.title : null;
-}
-
-// Fungsi untuk mengambil seluruh metadata Artikel
-export default function getArticleById(id: string): Article | null {
-  const numId = parseInt(id, 10);
-  return articles.find((article) => article.id === numId) || null;
-}
-
 export const articles: Article[] = [
   {
     id: 0,
@@ -92,5 +78,3 @@ export const articles: Article[] = [
     desc: "Tim nasional Indonesia berhasil lolos ke babak kualifikasi Piala Dunia 2026...",
   },
 ];
-
-

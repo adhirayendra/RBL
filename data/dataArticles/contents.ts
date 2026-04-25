@@ -8,16 +8,7 @@ type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "image"; url: string; alt: string };
 
-
-// Fungsi untuk mengambil content artikel yang dibutuhkan atau yang ingin ditampilkan
-export default function GetContentById(id: string): ContentArticle | null {
-  const numId = parseInt(id, 10);
-  const content = Contents.find((content) => content.id === numId);
-
-  return content || null;
-}
-
-export const Contents: ContentArticle[] = [
+export const contents: ContentArticle[] = [
   {
     id: 0,
     content: [

@@ -45,7 +45,7 @@ export default function ArticleList() {
 
         <ul
           id="content_articles"
-          className="w-full bg-linear-to-b from-gray-300 to-black grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 md:p-8 min-h-125"
+          className="w-full bg-linear-to-b from-gray-500 to-black grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 md:p-8 min-h-125"
         >
           {currentPost.length > 0 ? (
             currentPost.map((article) => (

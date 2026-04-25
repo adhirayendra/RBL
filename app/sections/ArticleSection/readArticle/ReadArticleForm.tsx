@@ -1,16 +1,20 @@
 import Image from "next/image";
-import type { ContentArticle } from "@/data/dataArticles/Contents";
+
+import RecommendedArticles from "./RecommendedArticles";
+import type { ContentArticle } from "@/data/dataArticles/contents";
 
 export default function ReadArticleForm({
   title,
   contents,
+  relatedArticles,
 }: {
   title: string;
   contents: ContentArticle;
+  relatedArticles: any[];
 }) {
   return (
-    <div className="w-full bg-white md:bg-gray-50 pt-20 pb-20">
-      <article className="max-w-5xl mx-auto px-6 md:px-12 py-10">
+    <div className="w-full bg-white md:bg-gray-50 pt-20">
+      <article className="max-w-5xl mx-auto px-6 md:px-12 pt-10">
         {/* Judul Artikel */}
         <h1 className="font-extrabold text-3xl md:text-4xl text-gray-900 leading-tight pb-6">
           {title}
@@ -57,9 +61,12 @@ export default function ReadArticleForm({
         </div>
 
         {/* Footer Article Simple */}
-        <div className="mt-16 pt-8 border-t border-gray-100 text-gray-400 text-sm w-full flex justify-center">
+        <div className="my-16 pt-8 border-t border-gray-100 text-gray-400 text-sm w-full flex justify-center">
           © 2026 Article Universitas Budiluhur - Selamat Membaca
         </div>
+
+        {/* Recommendations */}
+        <RecommendedArticles relatedArticles={relatedArticles} />
       </article>
     </div>
   );
