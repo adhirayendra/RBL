@@ -11,7 +11,7 @@ export default function SocialMediaList({
 }) {
   return (
     <li>
-      <Link href={href} className="hover:text-gray-400 transition-colors">
+      <Link href={href} className="text-gray-400 hover:text-white transition-colors">
         <Icon size={36} />
       </Link>
     </li>

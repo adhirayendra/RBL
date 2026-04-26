@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import RecommendedArticles from "./RecommendedArticles";
 import type { ContentArticle } from "@/data/dataArticles/contents";
 
 export default function ReadArticleForm({
@@ -13,10 +12,10 @@ export default function ReadArticleForm({
   relatedArticles: any[];
 }) {
   return (
-    <div className="w-full bg-white md:bg-gray-50 pt-20">
-      <article className="max-w-5xl mx-auto px-6 md:px-12 pt-10">
+    <div className="w-full pt-20 px-6 md:px-12 bg-white">
+      <article className="mx-auto">
         {/* Judul Artikel */}
-        <h1 className="font-extrabold text-3xl md:text-4xl text-gray-900 leading-tight pb-6">
+        <h1 className="font-extrabold text-3xl md:text-6xl text-gray-900 leading-tight pb-6">
           {title}
         </h1>
 
@@ -40,33 +39,18 @@ export default function ReadArticleForm({
                   {item.text}
                 </p>
               ) : (
-                <figure className="my-10">
-                  <div className="relative w-full aspect-video">
+                  <figure className="relative w-full aspect-video my-10">
                     <Image
                       src={item.url}
                       alt={item.alt}
                       fill
                       className="rounded-xl shadow-md object-cover"
                     />
-                  </div>
-                  {item.alt && (
-                    <figcaption className="text-center text-sm text-gray-500 mt-3 italic">
-                      {item.alt}
-                    </figcaption>
-                  )}
-                </figure>
+                  </figure>
               )}
             </div>
           ))}
         </div>
-
-        {/* Footer Article Simple */}
-        <div className="my-16 pt-8 border-t border-gray-100 text-gray-400 text-sm w-full flex justify-center">
-          © 2026 Article Universitas Budiluhur - Selamat Membaca
-        </div>
-
-        {/* Recommendations */}
-        <RecommendedArticles relatedArticles={relatedArticles} />
       </article>
     </div>
   );

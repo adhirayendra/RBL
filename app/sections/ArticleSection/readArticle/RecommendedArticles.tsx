@@ -4,7 +4,7 @@ import SocialMediaList from "@/app/components/common/SocialMediaList";
 
 export default function RecommendedArticles({ relatedArticles }: any) {
   return (
-    <div className="w-full bg-[#1a1a1a] text-white p-8 md:p-12 font-sans">
+    <div className="w-full bg-linear-to-b from-gray-500 to-black p-8 md:p-12 font-sans">
       <div className="mb-10">
         <span className="text-sm font-medium text-gray-300 block mb-4">
           Share this:
@@ -17,8 +17,6 @@ export default function RecommendedArticles({ relatedArticles }: any) {
         </ul>
       </div>
 
-      <hr className="border-gray-700 mb-10" />
-
       {/* 2. Recommended Section */}
       <div>
         <h3 className="text-lg font-semibold mb-6 text-gray-200">Related</h3>
@@ -30,7 +28,7 @@ export default function RecommendedArticles({ relatedArticles }: any) {
               key={article.id}
               className="flex flex-col gap-2 group cursor-pointer"
             >
-              <h4 className="text-md font-bold leading-snug group-hover:underline transition-colors">
+              <h4 className="text-md text-white font-bold leading-snug group-hover:underline transition-colors">
                 {article.title}
               </h4>
               <div className="text-xs text-gray-400 space-y-1">
