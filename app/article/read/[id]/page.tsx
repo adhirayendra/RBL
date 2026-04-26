@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 
-import ReadArticleForm from "@/app/sections/articleSection/readArticle/ReadArticleForm";
+import ReadArticleForm from "@/app/sections/ArticleSection/readArticle/ReadArticleForm";
 import { getContentById } from "@/app/lib/articleLogic";
 import { getArticleById } from "@/app/lib/articleLogic";
 import { getRelatedArticle } from "@/app/lib/articleLogic";
