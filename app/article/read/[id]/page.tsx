@@ -6,6 +6,7 @@ import ReadArticleForm from "@/app/sections/ArticleSection/readArticle/ReadArtic
 import { getContentById } from "@/app/lib/articleLogic";
 import { getArticleById } from "@/app/lib/articleLogic";
 import { getRelatedArticle } from "@/app/lib/articleLogic";
+import RecommendedArticles from "@/app/sections/articleSection/readArticle/RecommendedArticles";
 
 export default function ReadArticlePage() {
   // Mengambil parameter ID dari URL
@@ -36,12 +37,26 @@ export default function ReadArticlePage() {
   };
 
   return (
-    <div className="bg-[#2D5FFE] w-full pt-30 flex flex-col items-center">
+    <div className="bg-[#2D5FFE] w-full pt-25 md:pt-20 flex flex-col">
+      {/* Category Container */}
+      <div className="px-6 md:px-12">
+        <div className="inline-block py-2 px-8 rounded-t-2xl bg-yellow-400 text-black -mb-px relative z-10">
+          <span className="font-bold text-sm md:text-lg uppercase tracking-wide">
+            {article.category}
+          </span>
+        </div>
+      </div>
+
       <ReadArticleForm
         title={article.title}
         contents={mergedContents}
         relatedArticles={relatedArticles}
       />
+
+      {/* Recommendations */}
+      <div className="pt-8 bg-white">
+        <RecommendedArticles relatedArticles={relatedArticles} />
+      </div>
     </div>
   );
 }
