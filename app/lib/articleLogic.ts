@@ -27,18 +27,15 @@ export function getRelatedArticle(
     }
   }
 
-  let attempts = 0;
-  while (selectedIds.length < maxRelatedContent && attempts < articles.length) {
-    const randomIndex = Math.floor(Math.random() * articles.length);
-    const randomArticle = articles[randomIndex];
-
-    const isNotCurrent = randomArticle.id !== currentId;
-    const isNotDuplicate = !selectedIds.includes(randomArticle.id);
+  // Jika masih kurang dari maxRelatedContent, ambil artikel lain (selain yang sudah terpilih dan current)
+  for (let i = 0; i < articles.length && selectedIds.length < maxRelatedContent; i++) {
+    const article = articles[i];
+    const isNotCurrent = article.id !== currentId;
+    const isNotDuplicate = !selectedIds.includes(article.id);
 
     if (isNotCurrent && isNotDuplicate) {
-      selectedIds.push(randomArticle.id);
+      selectedIds.push(article.id);
     }
-    attempts++;
   }
 
   return selectedIds
