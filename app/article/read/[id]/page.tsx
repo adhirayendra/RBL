@@ -6,7 +6,7 @@ import ReadArticleForm from "@/app/sections/ArticleSection/readArticle/ReadArtic
 import { getContentById } from "@/app/lib/articleLogic";
 import { getArticleById } from "@/app/lib/articleLogic";
 import { getRelatedArticle } from "@/app/lib/articleLogic";
-import RecommendedArticles from "@/app/sections/articleSection/readArticle/RecommendedArticles";
+import RecommendedArticles from "@/app/sections/ArticleSection/readArticle/RecommendedArticles";
 
 export default function ReadArticlePage() {
   // Mengambil parameter ID dari URL
