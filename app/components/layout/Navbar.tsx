@@ -1,29 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BsList, BsX } from "react-icons/bs"; // Menambahkan BsX untuk tombol close
 
 import { navbarItems } from "@/app/assets/NavbarList";
 
 export default function Navbar() {
-  return (
-    <nav className="absolute top-0 left-0 w-full z-50 py-6">
-      {/* Container dengan Grid 3 Kolom */}
-      <div className="max-w-360 mx-auto px-6 md:px-16 flex justify-between items-center">
-        {/* KOLOM 1: Navigasi (Hanya muncul di Desktop) */}
-        <ul className="hidden md:flex items-center gap-8 text-[#FFDD00] font-bold text-[15px] tracking-widest">
-          {navbarItems.map((item, index) => (
-            <li key={index}>
-              <Link
-                href={item.href}
-                className="hover:text-white transition-colors"
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+  const [navListOpen, setNavListOpen] = useState(false);
 
-        {/* KOLOM 2: Logo (Tengah Sempurna) */}
-        <div className="md:absolute md:left-1/2 md:-translate-x-1/2 flex justify-start md:justify-center z-0">
+  return (
+    <>
+      {/* MAIN NAVBAR */}
+      <nav className="absolute top-0 left-0 w-full flex justify-between items-center z-50 py-6 px-4">
+        <header className="flex items-center gap-4">
           <Link href="/">
             <Image
               src="/image/logo.png"
@@ -36,29 +27,88 @@ export default function Navbar() {
               sizes="60px"
             />
           </Link>
-        </div>
 
-        {/* KOLOM 3: Button (Sisi Kanan) */}
-        <div className="flex justify-end items-center gap-4">
-          <div className="hidden md:block">
-            <Link
-              href="/streaming"
-              className="bg-gradient-to-br from-[#FFDD00] to-[#C1A600] text-black font-extrabold px-6 py-2.5 rounded-full flex items-center gap-3 hover:opacity-90 transition-all shadow-lg uppercase tracking-wider text-xs"
-            >
-              <Image src="/image/play.png" alt="Play" width={16} height={16} />
-              LIVE STREAMING
-            </Link>
-          </div>
+          <ul className="hidden md:flex items-center gap-8 text-[#FFDD00] font-bold text-[15px] tracking-widest">
+            {navbarItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.href}
+                  className="hover:text-white transition-colors"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </header>
 
-          {/* Mobile Menu Icon (Muncul di HP sebagai ganti Menu Kiri) */}
-          <button
-            aria-label="Open navigation menu"
-            className="md:hidden text-[#FFDD00] font-bold border-2 border-[#FFDD00] px-3 py-1 rounded hover:bg-[#FFDD00] hover:text-black transition-colors"
+        <div className="block">
+          <Link
+            href="/streaming"
+            className="bg-linear-to-br from-[#FFDD00] to-[#C1A600] text-black font-extrabold px-6 py-2.5 rounded-full flex items-center gap-3 hover:opacity-90 transition-all shadow-lg uppercase tracking-wider text-xs"
           >
-            MENU
-          </button>
+            <Image src="/image/play.png" alt="Play" width={16} height={16} />
+            LIVE STREAMING
+          </Link>
         </div>
+
+        {/* Tombol Hamburger Mobile */}
+        <button
+          onClick={() => setNavListOpen(true)} // Membuka menu
+          aria-label="Open navigation menu"
+          className="md:hidden text-black text-xl bg-linear-to-br from-[#FFDD00] to-[#C1A600] w-10 h-10 flex justify-center items-center rounded-lg transition-colors"
+        >
+          <BsList />
+        </button>
+      </nav>
+
+      {/* MOBILE FULLSCREEN MENU OVERLAY */}
+      <div
+        className={`fixed inset-0 bg-white z-[100] flex flex-col transition-transform duration-300 md:hidden ${
+          navListOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Header di dalam Menu Mobile */}
+        <div className="bg-gradient-to-r from-[#FFDD00] to-[#C1A600] flex justify-between items-center px-6 py-4 shadow-md">
+          {/* Tombol Close (X) */}
+          <button
+            onClick={() => setNavListOpen(false)} // Menutup menu
+            aria-label="Close navigation menu"
+            className="text-black text-3xl focus:outline-none"
+          >
+            <BsX />
+          </button>
+
+          {/* Frekuensi Info */}
+          <span className="text-black font-bold text-xl tracking-wide">
+            107.7 FM
+          </span>
+
+          {/* Mini Logo kanan */}
+          <Image
+            src="/image/logo.png"
+            alt="Radio Budi Luhur Logo Mini"
+            width={35}
+            height={35}
+            className="object-contain"
+          />
+        </div>
+
+        {/* Menu Items Links */}
+        <ul className="flex flex-col gap-6 pt-10 px-8 text-black font-extrabold text-2xl uppercase tracking-wider">
+          {navbarItems.map((item, index) => (
+            <li key={index}>
+              <Link
+                href={item.href}
+                onClick={() => setNavListOpen(false)} // Otomatis tutup menu saat link diklik
+                className="hover:text-gray-600 transition-colors block w-full"
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </nav>
+    </>
   );
 }
