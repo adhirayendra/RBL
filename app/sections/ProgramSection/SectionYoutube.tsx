@@ -3,122 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaPlay, FaTimes } from "react-icons/fa";
+import { videos } from "@/data/dataPrograms/youtubeVideos";
 
 export const SectionYoutube = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showRecommended, setShowRecommended] = useState(false);
-
-  const videos = [
-    {
-      id: 1,
-      title: "Perkenalkin\nRadio Budi luhur",
-      description: "Radio komunitas yang telah menjadi suara khas Universitas Budi Luhur sejak 2005, hadir di frekuensi 107.7 FM dan dapat dinikmati secara global melalui platform streaming di www.radiobudiluhur.com atau di RCTI+",
-      thumbnail: "/image/Youtube/perkenalkin.webp",
-      link: "https://www.youtube.com/watch?v=8zVeXiPuWog",
-      recommendations: [
-        {
-          title: "Get To Know Radio Budi Luhur",
-          date: "21 Okt 2024",
-          duration: "1:48",
-          thumbnail: "/image/Youtube/perkenalkin.webp",
-          link: "https://www.youtube.com/watch?v=8zVeXiPuWog"
-        },
-        {
-          title: "Radio Budi Luhur Video Profile 2021: New Era",
-          date: "26 Sep 2021",
-          duration: "2:32",
-          thumbnail: "/image/Youtube/perkenalkin.webp",
-          link: "https://www.youtube.com/watch?v=rEASOO9Kk3A"
-        },
-        {
-          title: "Radio Budi Luhur Video Profile 2023: One",
-          date: "18 Sep 2023",
-          duration: "3:15",
-          thumbnail: "/image/Youtube/RCVi_MjLSy0-HD (1) 1.png",
-          link: "https://www.youtube.com/watch?v=RCVi_MjLSy0"
-        }
-      ]
-    },
-    {
-      id: 2,
-      id_content: "Nyobrak",
-      title: "Nyobrak:\nEksistensi Radio",
-      description: "Membahas perjalanan dan eksistensi radio komunitas kampus di era digital bersama para pakar dan praktisi media lokal.",
-      thumbnail: "/image/Youtube/eps 1 ngobrak .webp",
-      link: "https://www.youtube.com/watch?v=rEASOO9Kk3A",
-      recommendations: [
-        {
-          title: "NGOBRAKS Eps. 2 Saat \"NORMAL\",  jadi \"BEBAN?!\"",
-          date: "15 Jan 2024",
-          duration: "12:30",
-          thumbnail: "/image/Youtube/eps 2 ngobrak.webp",
-          link: "https://www.youtube.com/watch?v=rEASOO9Kk3A"
-        },
-        {
-          title: "NGOBRAKS Eps. 3 KULIAH, MASA GITUH??!",
-          date: "10 Feb 2024",
-          duration: "08:45",
-          thumbnail: "/image/Youtube/eps 3 ngobrak.webp",
-          link: "https://www.youtube.com/watch?v=8zVeXiPuWog"
-        },
-        {
-          title: "Tawabal: Back To School",
-          date: "24 May 2025",
-          duration: "06:32",
-          thumbnail: "/image/Youtube/bts.webp",
-          link: "https://www.youtube.com/watch?v=a2qeGP-UphY"
-        }
-      ]
-    },
-    {
-      id: 3,
-      id_content: "Tanya Jawab Asal",
-      title: "Tanya Jawab Asal:\nEdisi Ramadhan",
-      description: "Segmen spesial Ramadhan yang penuh dengan tanya jawab seru dan penuh tawa bersama pengisi acara favorit kamu.",
-      thumbnail: "/image/Youtube/tawabal.webp",
-      link: "https://www.youtube.com/watch?v=RCVi_MjLSy0",
-      recommendations: [
-        {
-          title: "Behind the Scenes: Edisi Ramadhan",
-          date: "20 Mar 2024",
-          duration: "05:20",
-          thumbnail: "/image/Youtube/tawabal.webp",
-          link: "https://www.youtube.com/watch?v=RCVi_MjLSy0"
-        },
-        {
-          title: "Keseruan Buka Puasa Bersama RBL",
-          date: "25 Mar 2024",
-          duration: "04:15",
-          thumbnail: "/image/Youtube/tawabal.webp",
-          link: "https://www.youtube.com/watch?v=kyHJg8smjzM"
-        }
-      ]
-    },
-    {
-      id: 4,
-      id_content: "Now We Know",
-      title: "Now We Know:\nProgram Edukasi",
-      description: "Wawasan baru setiap hari! Temukan fakta-fakta unik yang belum kamu ketahui sebelumnya hanya di program Now We Know.",
-      thumbnail: "/image/Youtube/now we know.webp",
-      link: "https://www.youtube.com/watch?v=kyHJg8smjzM",
-      recommendations: [
-        {
-          title: "Fakta Unik Sejarah Radio",
-          date: "05 Apr 2024",
-          duration: "06:10",
-          thumbnail: "/image/Youtube/now we know.webp",
-          link: "https://www.youtube.com/watch?v=kyHJg8smjzM"
-        },
-        {
-          title: "Teknolgi di Balik Siaran Radio",
-          date: "12 Apr 2024",
-          duration: "07:30",
-          thumbnail: "/image/Youtube/now we know.webp",
-          link: "https://www.youtube.com/watch?v=RCVi_MjLSy0"
-        }
-      ]
-    }
-  ];
 
   return (
     <section className="w-full bg-[#2D5FFE] overflow-hidden flex flex-col items-center pb-16">
@@ -153,8 +42,10 @@ export const SectionYoutube = () => {
         {!showRecommended && (
           <div className="absolute z-20 left-6 md:left-[976px] top-[100px] md:top-[34px] right-6 md:right-8">
             <h1 className="text-white text-3xl md:text-5xl font-black font-['DM_Sans'] tracking-tight leading-[1.1] mb-4 md:mb-8">
-              {videos[activeIndex].title.split('\n').map((line, i) => (
-                <span key={i} className="block">{line}</span>
+              {videos[activeIndex].title.split("\n").map((line, i) => (
+                <span key={i} className="block">
+                  {line}
+                </span>
               ))}
             </h1>
             <p className="text-white text-base md:text-xl font-medium font-['DM_Sans'] text-justify leading-relaxed max-w-[400px] line-clamp-4 md:line-clamp-none">
@@ -165,13 +56,15 @@ export const SectionYoutube = () => {
             <div className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-12">
               {/* PLAY */}
               <button
-                onClick={() => window.open(videos[activeIndex].link, '_blank')}
+                onClick={() => window.open(videos[activeIndex].link, "_blank")}
                 className="w-full sm:w-36 h-14 bg-[#2D5FFE] rounded-[46px] flex items-center justify-start px-2 relative group hover:scale-105 transition-transform cursor-pointer"
               >
                 <div className="w-11 h-11 bg-stone-900 rounded-full flex items-center justify-center">
                   <FaPlay className="text-white ml-0.5 text-sm" />
                 </div>
-                <span className="ml-4 text-white text-2xl font-bold font-['DM_Sans']">PLAY</span>
+                <span className="ml-4 text-white text-2xl font-bold font-['DM_Sans']">
+                  PLAY
+                </span>
               </button>
 
               {/* RECOMMENDED */}
@@ -190,7 +83,10 @@ export const SectionYoutube = () => {
         {showRecommended && (
           <div className="absolute inset-y-0 right-0 w-full md:w-[500px] bg-[#121212]/95 z-40 backdrop-blur-md p-6 md:p-8 flex flex-col transition-all duration-500 animate-in slide-in-from-right">
             <div className="flex justify-between items-center mb-8 md:mb-10">
-              <div className="bg-[#2D5FFE] text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wider" role="status">
+              <div
+                className="bg-[#2D5FFE] text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wider"
+                role="status"
+              >
                 RECOMMENDED
               </div>
               <button
@@ -206,10 +102,12 @@ export const SectionYoutube = () => {
               {(videos[activeIndex].recommendations || []).map((video, idx) => (
                 <div
                   key={idx}
-                  onClick={() => video.link && window.open(video.link, '_blank')}
+                  onClick={() =>
+                    video.link && window.open(video.link, "_blank")
+                  }
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      video.link && window.open(video.link, '_blank');
+                    if (e.key === "Enter" || e.key === " ") {
+                      video.link && window.open(video.link, "_blank");
                     }
                   }}
                   role="button"
@@ -244,16 +142,19 @@ export const SectionYoutube = () => {
 
       {/* Thumbnails Area - Improved Responsive Layout */}
       <div className="w-full max-w-[1440px] px-6 md:px-[33px] mt-8">
-        <div className="flex flex-wrap md:flex-nowrap justify-center gap-6 md:gap-[26px]" role="tablist">
+        <div
+          className="flex flex-wrap md:flex-nowrap justify-center gap-6 md:gap-[26px]"
+          role="tablist"
+        >
           {videos.map((video, i) => (
             <div
               key={video.id}
               role="tab"
               aria-selected={activeIndex === i}
-              aria-label={`Select program: ${video.title.replace('\n', ' ')}`}
+              aria-label={`Select program: ${video.title.replace("\n", " ")}`}
               tabIndex={0}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === "Enter" || e.key === " ") {
                   setActiveIndex(i);
                 }
               }}
@@ -261,7 +162,9 @@ export const SectionYoutube = () => {
               onClick={() => setActiveIndex(i)}
             >
               {/* The Image */}
-              <div className={`w-[calc(50vw-36px)] md:w-80 h-32 md:h-48 overflow-hidden rounded-lg relative transition-all duration-300 ${activeIndex === i ? 'scale-[1.02]' : ''}`}>
+              <div
+                className={`w-[calc(50vw-36px)] md:w-80 h-32 md:h-48 overflow-hidden rounded-lg relative transition-all duration-300 ${activeIndex === i ? "scale-[1.02]" : ""}`}
+              >
                 <Image
                   src={video.thumbnail}
                   alt=""
@@ -285,14 +188,18 @@ export const SectionYoutube = () => {
         </div>
 
         {/* Pagination/Scroll Indicator */}
-        <div className="flex items-center justify-center gap-6 mt-12" role="navigation" aria-label="YouTube Program Pagination">
+        <div
+          className="flex items-center justify-center gap-6 mt-12"
+          role="navigation"
+          aria-label="YouTube Program Pagination"
+        >
           {videos.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
               aria-label={`Go to video ${i + 1}`}
-              aria-current={activeIndex === i ? 'step' : undefined}
-              className={`w-4 h-4 md:w-6 md:h-6 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? 'bg-[#FFDD00]' : 'bg-white hover:bg-white/80'}`}
+              aria-current={activeIndex === i ? "step" : undefined}
+              className={`w-4 h-4 md:w-6 md:h-6 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? "bg-[#FFDD00]" : "bg-white hover:bg-white/80"}`}
             />
           ))}
         </div>
@@ -300,4 +207,3 @@ export const SectionYoutube = () => {
     </section>
   );
 };
-

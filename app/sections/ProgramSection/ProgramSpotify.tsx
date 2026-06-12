@@ -2,7 +2,17 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { FaPlay, FaPause, FaStepBackward, FaStepForward, FaEllipsisH, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import {
+  FaPlay,
+  FaPause,
+  FaStepBackward,
+  FaStepForward,
+  FaEllipsisH,
+  FaVolumeUp,
+  FaVolumeMute,
+} from "react-icons/fa";
+
+import { episodes } from "@/data/dataPrograms/spotify";
 
 export default function ProgramSpotify() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -14,66 +24,6 @@ export default function ProgramSpotify() {
   const [isMuted, setIsMuted] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const episodes = [
-    {
-      id: 1,
-      title: "Dramadhan",
-      author: "Radio Budi Luhur",
-      mainCover: "/image/spotifySeries/Spotify 1.png",
-      thumbnail: "/image/spotifySeries/Spotify 1.png",
-      duration: "13:57",
-      progress: "1/3",
-      playlist: [
-        { id: 1, title: "Hidup Begini Begini Aja", duration: "03:45", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 2, title: "Ekspidisi Menyentuh Awan", duration: "10:20", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 3, title: "Penyakit Orang Kaya", duration: "15:45", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 4, title: "Suara Dari Masa Lalu", duration: "12:30", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-      ]
-    },
-    {
-      id: 2,
-      title: "Into the Spectrum",
-      author: "Radio Budi Luhur",
-      mainCover: "/image/spotifySeries/Cover Spotify 1.png",
-      thumbnail: "/image/spotifySeries/Cover Spotify 1.png",
-      duration: "15:20",
-      progress: "2/5",
-      playlist: [
-        { id: 1, title: "Spectrum Beginnings", duration: "15:20", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 2, title: "Wavelengths", duration: "12:15", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 3, title: "Color Theory", duration: "14:40", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-      ]
-    },
-    {
-      id: 3,
-      title: "Tanya Jawab Asal",
-      author: "Radio Budi Luhur",
-      mainCover: "/image/spotifySeries/Spotify 1.png",
-      thumbnail: "/image/spotifySeries/Cover Spotify 1.png",
-      duration: "10:45",
-      progress: "1/1",
-      playlist: [
-        { id: 1, title: "Q&A Session 1", duration: "10:45", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 2, title: "Behind the Scenes", duration: "08:30", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-      ]
-    },
-    {
-      id: 4,
-      title: "Now We Know",
-      author: "Radio Budi Luhur",
-      mainCover: "/image/spotifySeries/Spotify 1.png",
-      thumbnail: "/image/spotifySeries/Cover Spotify 1.png",
-      duration: "12:10",
-      progress: "4/10",
-      playlist: [
-        { id: 1, title: "Episode 1: Atoms", duration: "12:10", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 2, title: "Episode 2: Space", duration: "15:00", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 3, title: "Episode 3: Ocean", duration: "11:30", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-        { id: 4, title: "Episode 4: History", duration: "14:20", src: "/audio/SpotiDownloader.com - Baby - Justin Bieber.mp3" },
-      ]
-    },
-  ];
 
   const currentEpisode = episodes[activeIndex];
   const currentTrack = currentEpisode.playlist[currentTrackIdx];
@@ -136,7 +86,9 @@ export default function ProgramSpotify() {
     if (direction === "next") {
       setCurrentTrackIdx((currentTrackIdx + 1) % playlist.length);
     } else {
-      setCurrentTrackIdx((currentTrackIdx - 1 + playlist.length) % playlist.length);
+      setCurrentTrackIdx(
+        (currentTrackIdx - 1 + playlist.length) % playlist.length,
+      );
     }
     setTimeout(() => {
       if (audioRef.current) {
@@ -162,11 +114,13 @@ export default function ProgramSpotify() {
 
       <section className="w-full bg-[#2C2C2C] relative pt-16 pb-12 mt-12 md:mt-16">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-[56px] -translate-y-[98%] bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[20px] md:rounded-t-[30px]">
-          <h2 className="text-black text-lg md:text-xl font-extrabold font-['DM_Sans'] tracking-wide">Program Spotify</h2>
+          <h2 className="text-black text-lg md:text-xl font-extrabold font-['DM_Sans'] tracking-wide">
+            Program Spotify
+          </h2>
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex flex-col md:flex-row items-start gap-10 lg:gap-16">
-          <div className="w-64 h-64 md:w-80 md:h-80 flex-shrink-0 rounded-[20px] overflow-hidden shadow-2xl transition-all duration-500">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10 lg:gap-16">
+          <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 flex-shrink-0 rounded-[20px] overflow-hidden shadow-2xl transition-all duration-500">
             <Image
               src={currentEpisode.mainCover}
               alt={currentEpisode.title}
@@ -175,31 +129,37 @@ export default function ProgramSpotify() {
               className="w-full h-full object-cover"
               priority
               quality={80}
-              sizes="(max-width: 768px) 256px, 320px"
+              sizes="(max-width: 640px) 192px, (max-width: 768px) 256px, 320px"
             />
           </div>
 
           <div className="flex-1 w-full text-white">
-            <div className="mb-6">
-              <h3 className="text-3xl md:text-4xl font-bold mb-1 transition-all duration-300">
-                {isPlaying ? `PLAYING: ${currentTrack.title}` : `AUDIO SERIES : ${currentEpisode.title}`}
+            <div className="mb-6 text-center md:text-left">
+              <h3 className="text-xl sm:text-2xl md:text-4xl font-bold mb-1 transition-all duration-300 break-words">
+                {isPlaying
+                  ? `PLAYING: ${currentTrack.title}`
+                  : `AUDIO SERIES : ${currentEpisode.title}`}
               </h3>
               <p className="text-sm md:text-base text-gray-400 font-medium">
                 {currentEpisode.author}
               </p>
             </div>
 
-            <div className="flex items-center gap-4 bg-white/5 py-4 rounded-xl px-4 lg:px-6 mb-6">
+            <div className="flex flex-wrap md:flex-nowrap items-center gap-3 sm:gap-4 bg-white/5 py-4 rounded-xl px-3 sm:px-4 lg:px-6 mb-6">
               <button
                 onClick={() => skipTrack("prev")}
                 aria-label="Previous track"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors order-1"
               >
-                <FaStepBackward size={20} />
+                <FaStepBackward size={18} className="sm:hidden" />
+                <FaStepBackward size={20} className="hidden sm:block" />
               </button>
 
-              <div className="flex-1 flex items-center gap-3 relative">
-                <span className="text-gray-400 text-[10px] md:text-xs font-medium w-8 text-right" aria-hidden="true">
+              <div className="flex-1 basis-full md:basis-auto order-4 md:order-2 flex items-center gap-2 sm:gap-3 relative w-full">
+                <span
+                  className="text-gray-400 text-[10px] md:text-xs font-medium w-8 text-right"
+                  aria-hidden="true"
+                >
                   {formatTime(currentTime)}
                 </span>
                 <input
@@ -211,7 +171,10 @@ export default function ProgramSpotify() {
                   aria-label="Seek track position"
                   className="flex-1 h-1 bg-neutral-600 rounded-full appearance-none cursor-pointer accent-white hover:accent-[#FFDD00] transition-all"
                 />
-                <span className="text-gray-400 text-[10px] md:text-xs font-medium w-8" aria-hidden="true">
+                <span
+                  className="text-gray-400 text-[10px] md:text-xs font-medium w-8"
+                  aria-hidden="true"
+                >
                   {formatTime(duration)}
                 </span>
               </div>
@@ -219,18 +182,23 @@ export default function ProgramSpotify() {
               <button
                 onClick={() => skipTrack("next")}
                 aria-label="Next track"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors order-2 md:order-3"
               >
-                <FaStepForward size={20} />
+                <FaStepForward size={18} className="sm:hidden" />
+                <FaStepForward size={20} className="hidden sm:block" />
               </button>
 
-              <div className="hidden lg:flex items-center gap-2 group ml-2">
+              <div className="hidden lg:flex items-center gap-2 group ml-2 order-4">
                 <button
                   onClick={() => setIsMuted(!isMuted)}
                   aria-label={isMuted ? "Unmute volume" : "Mute volume"}
                   className="text-gray-400 hover:text-white"
                 >
-                  {isMuted || volume === 0 ? <FaVolumeMute size={18} /> : <FaVolumeUp size={18} />}
+                  {isMuted || volume === 0 ? (
+                    <FaVolumeMute size={18} />
+                  ) : (
+                    <FaVolumeUp size={18} />
+                  )}
                 </button>
                 <input
                   type="range"
@@ -244,20 +212,31 @@ export default function ProgramSpotify() {
                 />
               </div>
 
-              <button aria-label="More options" className="text-gray-500 hover:text-white transition-colors px-2">
+              <button
+                aria-label="More options"
+                className="hidden sm:block text-gray-500 hover:text-white transition-colors px-2 order-5"
+              >
                 <FaEllipsisH size={20} />
               </button>
 
               <button
                 onClick={togglePlay}
                 aria-label={isPlaying ? "Pause track" : "Play track"}
-                className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform flex-shrink-0 shadow-lg ml-2"
+                className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center text-black hover:scale-110 transition-transform flex-shrink-0 shadow-lg ml-auto md:ml-2 order-3 md:order-6"
               >
-                {isPlaying ? <FaPause className="text-lg" /> : <FaPlay className="ml-1 text-lg" />}
+                {isPlaying ? (
+                  <FaPause className="text-base sm:text-lg" />
+                ) : (
+                  <FaPlay className="ml-1 text-base sm:text-lg" />
+                )}
               </button>
             </div>
 
-            <div className="w-full max-h-[160px] overflow-y-auto pr-4 spotify-scrollbar" role="list" aria-label="Playlist">
+            <div
+              className="w-full max-h-[200px] sm:max-h-[180px] md:max-h-[160px] overflow-y-auto pr-2 sm:pr-4 spotify-scrollbar"
+              role="list"
+              aria-label="Playlist"
+            >
               <div className="flex flex-col border-t border-white/10">
                 {currentEpisode.playlist.map((track, trackIdx) => (
                   <div
@@ -273,7 +252,7 @@ export default function ProgramSpotify() {
                       }, 100);
                     }}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
+                      if (e.key === "Enter" || e.key === " ") {
                         setCurrentTrackIdx(trackIdx);
                         setTimeout(() => {
                           if (audioRef.current) {
@@ -285,20 +264,32 @@ export default function ProgramSpotify() {
                     }}
                     tabIndex={0}
                     aria-label={`Play track: ${track.title}`}
-                    className={`flex justify-between items-center py-4 border-b border-white/5 group cursor-pointer hover:bg-white/5 px-2 rounded-lg transition-colors ${currentTrackIdx === trackIdx ? 'bg-white/5' : ''}`}
+                    className={`flex justify-between items-center gap-2 py-3 sm:py-4 border-b border-white/5 group cursor-pointer hover:bg-white/5 px-2 rounded-lg transition-colors ${currentTrackIdx === trackIdx ? "bg-white/5" : ""}`}
                   >
-                    <div className="flex gap-4 items-center">
-                      <span className={`text-gray-500 font-bold w-4 ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : ''}`} aria-hidden="true">
-                        {currentTrackIdx === trackIdx && isPlaying ? "▶" : trackIdx + 1}
+                    <div className="flex gap-2 sm:gap-4 items-center min-w-0">
+                      <span
+                        className={`text-gray-500 font-bold w-4 flex-shrink-0 ${currentTrackIdx === trackIdx ? "text-[#FFDD00]" : ""}`}
+                        aria-hidden="true"
+                      >
+                        {currentTrackIdx === trackIdx && isPlaying
+                          ? "▶"
+                          : trackIdx + 1}
                       </span>
-                      <div className="flex flex-col">
-                        <span className={`font-bold transition-colors ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : 'text-white group-hover:text-[#FFDD00]'}`}>
+                      <div className="flex flex-col min-w-0">
+                        <span
+                          className={`font-bold transition-colors truncate ${currentTrackIdx === trackIdx ? "text-[#FFDD00]" : "text-white group-hover:text-[#FFDD00]"}`}
+                        >
                           {track.title}
                         </span>
-                        <span className="text-xs text-gray-500">{currentEpisode.author}</span>
+                        <span className="text-xs text-gray-500 truncate">
+                          {currentEpisode.author}
+                        </span>
                       </div>
                     </div>
-                    <span className={`text-sm ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : 'text-gray-500'}`} aria-label={`Track duration: ${track.duration}`}>
+                    <span
+                      className={`text-sm flex-shrink-0 ${currentTrackIdx === trackIdx ? "text-[#FFDD00]" : "text-gray-500"}`}
+                      aria-label={`Track duration: ${track.duration}`}
+                    >
                       {track.duration}
                     </span>
                   </div>
@@ -309,8 +300,12 @@ export default function ProgramSpotify() {
         </div>
       </section>
 
-      <section className="w-full bg-[#2D5FFE] pb-15 pt-8">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex flex-wrap md:flex-nowrap justify-center gap-8 md:gap-10 pb-10 pt-10 scroll-smooth" role="tablist" aria-label="Spotify Series Programs">
+      <section className="w-full bg-[#2D5FFE] pb-10 sm:pb-15 pt-8">
+        <div
+          className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 flex flex-wrap md:flex-nowrap justify-center gap-6 sm:gap-8 md:gap-10 pb-10 pt-10 scroll-smooth"
+          role="tablist"
+          aria-label="Spotify Series Programs"
+        >
           {episodes.map((episode, i) => (
             <div
               key={i}
@@ -327,7 +322,7 @@ export default function ProgramSpotify() {
                 }
               }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === "Enter" || e.key === " ") {
                   setActiveIndex(i);
                   setCurrentTrackIdx(0);
                 }
@@ -339,15 +334,17 @@ export default function ProgramSpotify() {
               )}
 
               {/* Thumbnail Container */}
-              <div className={`w-48 h-48 md:w-64 md:h-64 rounded-[40px] overflow-hidden transition-all duration-300 ${activeIndex === i ? 'border-[6px] border-[#FFDD00]' : 'bg-gray-200/40 group-hover:scale-105'}`}>
+              <div
+                className={`w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-[24px] sm:rounded-[40px] overflow-hidden transition-all duration-300 ${activeIndex === i ? "border-[4px] sm:border-[6px] border-[#FFDD00]" : "bg-gray-200/40 group-hover:scale-105"}`}
+              >
                 <Image
                   src={episode.thumbnail}
                   alt=""
                   width={256}
                   height={256}
-                  className={`w-full h-full object-cover transition-all duration-300 ${activeIndex === i ? 'opacity-100' : 'opacity-80'}`}
+                  className={`w-full h-full object-cover transition-all duration-300 ${activeIndex === i ? "opacity-100" : "opacity-80"}`}
                   quality={60}
-                  sizes="(max-width: 768px) 192px, 256px"
+                  sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 256px"
                 />
               </div>
             </div>
@@ -355,14 +352,18 @@ export default function ProgramSpotify() {
         </div>
 
         {/* Dynamic Pagination Dots */}
-        <div className="flex justify-center items-center gap-6 mt-12" role="navigation" aria-label="Series Pagination">
+        <div
+          className="flex justify-center items-center gap-4 sm:gap-6 mt-8 sm:mt-12"
+          role="navigation"
+          aria-label="Series Pagination"
+        >
           {episodes.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveIndex(i)}
               aria-label={`Go to series ${i + 1}`}
-              aria-current={activeIndex === i ? 'step' : undefined}
-              className={`w-4 h-4 md:w-6 md:h-6 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? 'bg-[#FFDD00]' : 'bg-white hover:bg-white/80'}`}
+              aria-current={activeIndex === i ? "step" : undefined}
+              className={`w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 rounded-full cursor-pointer transition-all duration-300 ${activeIndex === i ? "bg-[#FFDD00]" : "bg-white hover:bg-white/80"}`}
             ></button>
           ))}
         </div>
