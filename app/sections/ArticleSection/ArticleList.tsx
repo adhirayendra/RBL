@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { articles } from "@/data/dataArticles/articles";
-import ArticleCategory from "./ArticleCategory";
-import PaginationPage from "./Pagination";
+import ArticleCategory from "@/app/sections/articleSection/ArticleCategory";
+import PaginationPage from "@/app/sections/articleSection/Pagination";
 
 export default function ArticleList() {
   // Category Filter

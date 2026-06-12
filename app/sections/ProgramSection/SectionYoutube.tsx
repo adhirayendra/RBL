@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaPlay, FaTimes } from "react-icons/fa";
-import { videos } from "@/data/dataPrograms/youtubeVideos";
+import { videos } from "@/data/Programs/youtubeVideos";
 
 export const SectionYoutube = () => {
   const [activeIndex, setActiveIndex] = useState(0);

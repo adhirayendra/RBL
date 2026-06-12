@@ -12,7 +12,7 @@ import {
   FaVolumeMute,
 } from "react-icons/fa";
 
-import { episodes } from "@/data/dataPrograms/spotify";
+import { episodes } from "@/data/Programs/spotify";
 
 export default function ProgramSpotify() {
   const [activeIndex, setActiveIndex] = useState(0);

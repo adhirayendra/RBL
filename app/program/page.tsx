@@ -1,6 +1,6 @@
 import { SectionYoutube } from "../sections/programSection/SectionYoutube";
 import ProgramSpotify from "../sections/programSection/ProgramSpotify";
-import ProgramSection from "../sections/HomeSection/ProgramSection";
+import ProgramSection from "../sections/homeSection/ProgramSection";
 
 export const metadata = {
   title: "Program - Radio Budi Luhur",
