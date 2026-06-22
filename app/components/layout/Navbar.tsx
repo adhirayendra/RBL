@@ -64,9 +64,8 @@ export default function Navbar() {
 
       {/* MOBILE FULLSCREEN MENU OVERLAY */}
       <div
-        className={`fixed inset-0 bg-white z-[100] flex flex-col transition-transform duration-300 md:hidden ${
-          navListOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-0 bg-white z-[100] flex flex-col transition-transform duration-300 md:hidden ${navListOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Header di dalam Menu Mobile */}
         <div className="bg-gradient-to-r from-[#FFDD00] to-[#C1A600] flex justify-between items-center px-6 py-4 shadow-md">
