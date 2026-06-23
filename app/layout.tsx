@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
+import ConditionalWrapper from "./components/layout/ConditionalWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,16 +42,10 @@ export default function RootLayout({
           Skip to Content
         </a>
 
-        {/* 1. Taruh Navbar di sini */}
-        <Navbar />
-
-        {/* 2. Bungkus children dengan main/div flex-1 supaya Footer terdorong ke bawah */}
-        <main id="main_content" className="flex-1">
+        {/* 1. Navbar, Main, dan Footer dibungkus di ConditionalWrapper untuk menyembunyikannya di /studio */}
+        <ConditionalWrapper>
           {children}
-        </main>
-
-        {/* 3. Taruh Footer di sini */}
-        <Footer />
+        </ConditionalWrapper>
       </body>
     </html>
   );
