@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "coverartarchive.org",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: "/**",
+      },
     ],
     qualities: [25, 50, 75, 100], // Quality
   },
