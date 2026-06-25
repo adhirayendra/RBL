@@ -3,10 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import useSWR from "swr";
 
-import { articles } from "@/data/dataArticles/articles";
+import { client } from "@/sanity/lib/client";
+import type { Article } from "@/app/hooks/articles";
 import ArticleCategory from "./ArticleCategory";
 import PaginationPage from "./Pagination";
+
+// Fetcher untuk SWR yang menerima key berupa array parameter
+const fetcher = ([groqQuery, cat, start, end]: [
+  string,
+  string,
+  number,
+  number,
+]) => client.fetch(groqQuery, { cat, start, end });
 
 export default function ArticleList() {
   // Category Filter
@@ -20,18 +30,38 @@ export default function ArticleList() {
     setSelectedCategory(categoryName);
   };
 
-  const filteredArticles =
-    selectedCategory === "all"
-      ? articles
-      : articles.filter((article) => article.category === selectedCategory);
+  // Hitung indeks start dan end untuk slicing GROQ Sanity
+  const startPostIndex = (currentPage - 1) * postPerPage;
+  const endPostIndex = currentPage * postPerPage;
 
-  const lastPostIndex = currentPage * postPerPage;
-  const firstPostIndex = lastPostIndex - postPerPage;
+  // GROQ Query gabungan untuk data ter-pagination dan total count keseluruhan
+  const query = `{
+    "posts": *[_type == "article" && ($cat == "all" || category->name == $cat)] | order(publishedAt desc) [$start...$end] {
+      _id,
+      title,
+      "thumbnailUrl": thumbnail.asset->url,
+      publishedAt,
+      "category": category->{
+        name,
+        label
+      },
+      "author": author->name,
+      "desc": coalesce(desc, pt::text(content))
+    },
+    "total": count(*[_type == "article" && ($cat == "all" || category->name == $cat)])
+  }`;
 
-  const currentPost = filteredArticles.slice(firstPostIndex, lastPostIndex);
+  // Hit API Sanity secara otomatis via SWR saat category atau page berubah
+  const { data, error, isLoading } = useSWR(
+    [query, selectedCategory, startPostIndex, endPostIndex],
+    fetcher,
+  );
 
-  // Hitung page dinamis
-  const totalPages = Math.ceil(filteredArticles.length / postPerPage);
+  const currentPost = data?.posts || [];
+  const totalArticlesCount = data?.total || 0;
+
+  // Hitung page dinamis berdasarkan total data dari server Sanity
+  const totalPages = Math.ceil(totalArticlesCount / postPerPage);
 
   return (
     <>
@@ -47,13 +77,19 @@ export default function ArticleList() {
           id="content_articles"
           className="w-full bg-linear-to-b from-gray-500 to-black grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 md:p-8 min-h-125"
         >
-          {currentPost.length > 0 ? (
-            currentPost.map((article) => (
+          {isLoading ? (
+            <li className="col-span-full flex justify-center items-center py-20 list-none">
+              <p className="text-white font-bold opacity-50 text-center">
+                Loading articles...
+              </p>
+            </li>
+          ) : currentPost.length > 0 ? (
+            currentPost.map((article: Article) => (
               <li
-                key={article.id}
+                key={article._id}
                 className="group flex flex-col cursor-pointer h-full"
               >
-                <Link href={`/article/read/${article.id}`}>
+                <Link href={`/article/read/${article._id}`}>
                   {/* Container Gambar */}
                   <div className="relative w-full aspect-video overflow-hidden rounded-lg mb-4">
                     <Image
@@ -74,9 +110,9 @@ export default function ArticleList() {
                       {article.title}
                     </h2>
 
-                    <p className="text-gray-300 line-clamp-3 text-sm md:text-base">
+                    {/* <p className="text-gray-300 line-clamp-3 text-sm md:text-base">
                       {article.desc}
-                    </p>
+                    </p> */}
                   </div>
                 </Link>
               </li>

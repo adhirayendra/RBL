@@ -1,40 +1,65 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import useSWR from "swr";
+import { client } from "@/sanity/lib/client";
 
 import ReadArticleForm from "@/app/sections/ArticleSection/readArticle/ReadArticleForm";
-import { getContentById } from "@/app/lib/articleLogic";
-import { getArticleById } from "@/app/lib/articleLogic";
-import { getRelatedArticle } from "@/app/lib/articleLogic";
 import RecommendedArticles from "@/app/sections/ArticleSection/readArticle/RecommendedArticles";
 
+// Fetcher untuk SWR yang mendukung parameter dinamis
+const fetcher = ([query, params]: [string, any]) => client.fetch(query, params);
+
 export default function ReadArticlePage() {
-  // Mengambil parameter ID dari URL
   const params = useParams();
   const idContent = params.id as string;
 
-  // Mengambil metadata artikel (termasuk thumbnailUrl)
-  const article = getArticleById(idContent);
-  // Mengambil konten artikel berdasarkan ID
-  const contents = getContentById(idContent);
-  // Mengambil artikel terkait berdasarkan kategory (Related Article)
-  const relatedArticles = article
-    ? getRelatedArticle(article.id, article.category)
-    : [];
+  // GROQ Query: Mengambil detail artikel + 3 artikel terkait di kategori yang sama
+  const query = `*[_type == "article" && _id == $id][0] {
+    _id,
+    title,
+    "thumbnailUrl": thumbnail.asset->url,
+    publishedAt,
+    "category": category->{
+      name,
+      label
+    },
+    "author": author->name,
+    content,
+    "relatedArticles": *[_type == "article" && _id != ^._id && category->name == ^.category->name] | order(publishedAt desc) [0...3] {
+      _id,
+      title,
+      publishedAt,
+      "category": category->{
+        name,
+        label
+      }
+    }
+  }`;
 
-  if (!article || !contents) {
+  // Hit API Sanity saat idContent tersedia
+  const { data: article, isLoading } = useSWR(
+    idContent ? [query, { id: idContent }] : null,
+    fetcher,
+  );
+
+  if (isLoading) {
     return (
-      <div className="bg-[#2D5FFE] w-full h-40 flex items-center justify-center">
-        <span className="text-2xl font-bold">Article not found</span>
+      <div className="bg-[#2D5FFE] w-full h-screen flex items-center justify-center">
+        <span className="text-2xl font-bold text-white animate-pulse">
+          Loading Article...
+        </span>
       </div>
     );
   }
 
-  // Merge thumbnail into contents if needed, or pass separately
-  const mergedContents = {
-    ...contents,
-    thumbnailUrl: article.thumbnailUrl,
-  };
+  if (!article) {
+    return (
+      <div className="bg-[#2D5FFE] w-full h-40 flex items-center justify-center">
+        <span className="text-2xl font-bold text-white">Article not found</span>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#2D5FFE] w-full pt-25 md:pt-20 flex flex-col">
@@ -42,20 +67,17 @@ export default function ReadArticlePage() {
       <div className="px-6 md:px-12">
         <div className="inline-block py-2 px-8 rounded-t-2xl bg-yellow-400 text-black -mb-px relative z-10">
           <span className="font-bold text-sm md:text-lg uppercase tracking-wide">
-            {article.category}
+            {article.category?.label}
           </span>
         </div>
       </div>
 
-      <ReadArticleForm
-        title={article.title}
-        contents={mergedContents}
-        relatedArticles={relatedArticles}
-      />
+      <ReadArticleForm article={article} />
 
       {/* Recommendations */}
       <div className="pt-8 bg-white">
-        <RecommendedArticles relatedArticles={relatedArticles} />
+        {/* Pastikan fallback array kosong jika tidak ada artikel terkait */}
+        <RecommendedArticles relatedArticles={article.relatedArticles || []} />
       </div>
     </div>
   );
