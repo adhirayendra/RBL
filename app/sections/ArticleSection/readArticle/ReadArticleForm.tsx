@@ -1,24 +1,26 @@
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
-import { projectId, dataset } from "@/sanity/env";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "@/sanity/lib/client"; // Pastikan path client ini sesuai di projekmu
+
+// Inisialisasi builder untuk membuat URL gambar yang valid secara otomatis
+const builder = imageUrlBuilder(client);
+function urlFor(source: any) {
+  return builder.image(source);
+}
 
 export default function ReadArticleForm({ article }: { article: any }) {
-  // Custom renderer untuk komponen PortableText (mengganti logika .map manual)
+  // Custom renderer untuk komponen PortableText
   const ptComponents = {
     types: {
-      // Mengatur tampilan khusus jika ada sisipan gambar di tengah paragraf
+      // Perbaikan sistem render gambar di dalam teks agar selalu terakses aman
       image: ({ value }: any) => {
         if (!value?.asset?._ref) return null;
-
-        // Membangun URL gambar Sanity secara dinamis
-        const id = value.asset._ref.split("-")[1];
-        const ext = value.asset._ref.split("-")[2];
-        const imageUrl = `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}.${ext}`;
 
         return (
           <figure className="relative w-full aspect-video my-10">
             <Image
-              src={imageUrl}
+              src={urlFor(value).url()}
               alt={value.alt || "Ilustrasi artikel"}
               fill
               className="rounded-xl shadow-md object-cover"
@@ -30,9 +32,49 @@ export default function ReadArticleForm({ article }: { article: any }) {
     block: {
       // Mengatur styling paragraf standar
       normal: ({ children }: any) => (
-        <p className="text-gray-700 text-lg md:text-xl leading-8 text-justify mb-8">
+        <p className="text-gray-700 text-lg md:text-xl leading-8 text-start mb-6">
           {children}
         </p>
+      ),
+      // Mengatur styling semua tingkatan Heading agar dinamis sesuai di Sanity
+      h1: ({ children }: any) => (
+        <h1 className="text-3xl md:text-5xl font-extrabold text-gray-950 mt-12 mb-6 leading-tight">
+          {children}
+        </h1>
+      ),
+      h2: ({ children }: any) => (
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mt-10 mb-4 leading-snug">
+          {children}
+        </h2>
+      ),
+      h3: ({ children }: any) => (
+        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mt-8 mb-3">
+          {children}
+        </h3>
+      ),
+      h4: ({ children }: any) => (
+        <h4 className="text-lg md:text-xl font-semibold text-gray-900 mt-6 mb-2">
+          {children}
+        </h4>
+      ),
+      // Styling tambahan jika organisasi kampus menggunakan kutipan (blockquote)
+      blockquote: ({ children }: any) => (
+        <blockquote className="border-l-4 border-yellow-400 italic my-6 pl-4 md:pl-6 text-gray-600 text-lg md:text-xl">
+          {children}
+        </blockquote>
+      ),
+    },
+    // Styling tambahan untuk menangani daftar list (Bullet & Numbering)
+    list: {
+      bullet: ({ children }: any) => (
+        <ul className="list-disc pl-6 md:pl-8 mb-6 text-gray-700 text-lg md:text-xl space-y-2">
+          {children}
+        </ul>
+      ),
+      number: ({ children }: any) => (
+        <ol className="list-decimal pl-6 md:pl-8 mb-6 text-gray-700 text-lg md:text-xl space-y-2">
+          {children}
+        </ol>
       ),
     },
   };
@@ -40,12 +82,12 @@ export default function ReadArticleForm({ article }: { article: any }) {
   return (
     <div className="w-full pt-20 px-6 md:px-12 bg-white">
       <article className="mx-auto">
-        {/* Judul Artikel */}
+        {/* Judul Utama Artikel */}
         <h1 className="font-extrabold text-3xl md:text-6xl text-gray-900 leading-tight pb-6">
           {article.title}
         </h1>
 
-        {/* Thumbnail Artikel */}
+        {/* Thumbnail Utama Artikel */}
         <div className="relative w-full aspect-video mb-8">
           <Image
             src={article.thumbnailUrl || "/image/placeholder.jpg"}
@@ -56,8 +98,8 @@ export default function ReadArticleForm({ article }: { article: any }) {
           />
         </div>
 
-        {/* Content Artikel (Dinamis dari Sanity Portable Text) */}
-        <div className="space-y-8">
+        {/* Content Artikel yang Fleksibel, Mendukung Teks, Heading, List, dan Gambar */}
+        <div className="space-y-4">
           <PortableText value={article.content} components={ptComponents} />
         </div>
       </article>

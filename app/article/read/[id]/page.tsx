@@ -62,7 +62,7 @@ export default function ReadArticlePage() {
   }
 
   return (
-    <div className="bg-[#2D5FFE] w-full pt-25 md:pt-20 flex flex-col">
+    <div className="bg-[#2D5FFE] w-full pt-25 md:pt-25 flex flex-col">
       {/* Category Container */}
       <div className="px-6 md:px-12">
         <div className="inline-block py-2 px-8 rounded-t-2xl bg-yellow-400 text-black -mb-px relative z-10">
