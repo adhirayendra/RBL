@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { socialData } from "@/app/assets/socialMediaList"; // Sesuaikan path-nya jika berubah
-import SocialMediaList from "@/app/components/common/SocialMediaList";
+import SocialMediaList from "@/app/components/SocialMediaList";
 
 export default function RecommendedArticles({
   relatedArticles,

@@ -26,13 +26,6 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: "author",
-      title: "Penulis",
-      type: "reference",
-      to: [{ type: "author" }],
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
       name: "publishedAt",
       title: "Dibuat Kapan",
       type: "datetime",
