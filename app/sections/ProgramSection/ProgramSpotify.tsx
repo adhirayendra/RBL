@@ -119,8 +119,9 @@ export default function ProgramSpotify() {
           </h2>
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10 lg:gap-16">
-          <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 flex-shrink-0 rounded-[20px] overflow-hidden shadow-2xl transition-all duration-500">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex flex-col md:flex-row items-start gap-10 lg:gap-16">
+          {/* Main Cover - Desktop Only */}
+          <div className="hidden md:block w-64 h-64 md:w-80 md:h-80 flex-shrink-0 rounded-[20px] overflow-hidden shadow-2xl transition-all duration-500">
             <Image
               src={currentEpisode.mainCover}
               alt={currentEpisode.title}
@@ -133,20 +134,69 @@ export default function ProgramSpotify() {
             />
           </div>
 
+          {/* Overlapping Album Covers - Mobile Only */}
+          <div className="flex md:hidden justify-center items-center gap-4 relative w-full h-[180px] my-4 overflow-hidden">
+            {/* Preceding Cover */}
+            <div
+              onClick={() => {
+                setActiveIndex((activeIndex - 1 + episodes.length) % episodes.length);
+                setCurrentTrackIdx(0);
+              }}
+              className="w-24 h-24 relative rounded-md overflow-hidden opacity-60 scale-90 cursor-pointer transition-all duration-300"
+            >
+              <Image
+                src={episodes[(activeIndex - 1 + episodes.length) % episodes.length].thumbnail}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="96px"
+              />
+            </div>
+
+            {/* Active Cover */}
+            <div className="w-36 h-36 relative rounded-md overflow-hidden z-10 shadow-2xl scale-100 transition-all duration-300">
+              <Image
+                src={currentEpisode.thumbnail}
+                alt={currentEpisode.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="144px"
+              />
+            </div>
+
+            {/* Succeeding Cover */}
+            <div
+              onClick={() => {
+                setActiveIndex((activeIndex + 1) % episodes.length);
+                setCurrentTrackIdx(0);
+              }}
+              className="w-24 h-24 relative rounded-md overflow-hidden opacity-60 scale-90 cursor-pointer transition-all duration-300"
+            >
+              <Image
+                src={episodes[(activeIndex + 1) % episodes.length].thumbnail}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="96px"
+              />
+            </div>
+          </div>
+
           <div className="flex-1 w-full text-white">
-            <div className="mb-6 text-center md:text-left">
-              <h3 className="text-xl sm:text-2xl md:text-4xl font-bold mb-1 transition-all duration-300 break-words">
-                {isPlaying
-                  ? `PLAYING: ${currentTrack.title}`
-                  : `AUDIO SERIES : ${currentEpisode.title}`}
+            <div className="mb-6 hidden md:block">
+              <h3 className="text-3xl md:text-4xl font-bold mb-1 transition-all duration-300">
+                {isPlaying ? `PLAYING: ${currentTrack.title}` : `AUDIO SERIES : ${currentEpisode.title}`}
               </h3>
               <p className="text-sm md:text-base text-gray-400 font-medium">
                 {currentEpisode.author}
               </p>
             </div>
 
-            <div className="flex flex-wrap md:flex-nowrap items-center gap-3 sm:gap-4 bg-white/5 py-4 rounded-xl px-3 sm:px-4 lg:px-6 mb-6">
+            {/* Player controls - Desktop Layout */}
+            <div className="hidden md:flex items-center gap-4 bg-white/5 py-4 rounded-xl px-4 lg:px-6 mb-6">
               <button
+                suppressHydrationWarning
                 onClick={() => skipTrack("prev")}
                 aria-label="Previous track"
                 className="text-gray-400 hover:text-white transition-colors order-1"
@@ -232,11 +282,50 @@ export default function ProgramSpotify() {
               </button>
             </div>
 
-            <div
-              className="w-full max-h-[200px] sm:max-h-[180px] md:max-h-[160px] overflow-y-auto pr-2 sm:pr-4 spotify-scrollbar"
-              role="list"
-              aria-label="Playlist"
-            >
+            {/* Player controls - Mobile/Tablet Layout */}
+            <div className="flex md:hidden flex-col bg-white/5 p-4 rounded-xl mb-4 text-white">
+              {/* Upper row: Track Info & Play/Pause button */}
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex flex-col select-none max-w-[70%]">
+                  <span className="text-xs font-bold truncate">
+                    {currentTrack.title}
+                  </span>
+                  <span className="text-[9px] text-neutral-400 truncate">
+                    {currentEpisode.author}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button aria-label="More options" className="text-gray-400 hover:text-white transition-colors">
+                    <FaEllipsisH size={16} />
+                  </button>
+                  <button
+                    onClick={togglePlay}
+                    aria-label={isPlaying ? "Pause track" : "Play track"}
+                    className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black hover:scale-105 transition-transform flex-shrink-0 shadow-lg"
+                  >
+                    {isPlaying ? <FaPause size={14} /> : <FaPlay size={14} className="ml-0.5" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Lower row: Progress Slider & Time */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="range"
+                  min="0"
+                  max={duration || 0}
+                  value={currentTime}
+                  onChange={handleSeek}
+                  aria-label="Seek track position"
+                  className="flex-1 h-0.5 bg-neutral-600 rounded-full appearance-none cursor-pointer accent-white"
+                />
+                <span className="text-neutral-400 text-[9px] font-normal min-w-[30px] text-right">
+                  {formatTime(currentTime)}
+                </span>
+              </div>
+            </div>
+
+            <div className="w-full max-h-[160px] overflow-y-auto pr-4 spotify-scrollbar" role="list" aria-label="Playlist">
               <div className="flex flex-col border-t border-white/10">
                 {currentEpisode.playlist.map((track, trackIdx) => (
                   <div
@@ -264,32 +353,20 @@ export default function ProgramSpotify() {
                     }}
                     tabIndex={0}
                     aria-label={`Play track: ${track.title}`}
-                    className={`flex justify-between items-center gap-2 py-3 sm:py-4 border-b border-white/5 group cursor-pointer hover:bg-white/5 px-2 rounded-lg transition-colors ${currentTrackIdx === trackIdx ? "bg-white/5" : ""}`}
+                    className={`flex justify-between items-center py-3 border-b border-white/5 group cursor-pointer hover:bg-white/5 px-2 rounded-lg transition-colors ${currentTrackIdx === trackIdx ? 'bg-white/5' : ''}`}
                   >
-                    <div className="flex gap-2 sm:gap-4 items-center min-w-0">
-                      <span
-                        className={`text-gray-500 font-bold w-4 flex-shrink-0 ${currentTrackIdx === trackIdx ? "text-[#FFDD00]" : ""}`}
-                        aria-hidden="true"
-                      >
-                        {currentTrackIdx === trackIdx && isPlaying
-                          ? "▶"
-                          : trackIdx + 1}
+                    <div className="flex gap-4 items-center">
+                      <span className={`text-[10px] md:text-xs font-bold w-4 ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : 'text-gray-500'}`} aria-hidden="true">
+                        {currentTrackIdx === trackIdx && isPlaying ? "▶" : trackIdx + 1}
                       </span>
-                      <div className="flex flex-col min-w-0">
-                        <span
-                          className={`font-bold transition-colors truncate ${currentTrackIdx === trackIdx ? "text-[#FFDD00]" : "text-white group-hover:text-[#FFDD00]"}`}
-                        >
+                      <div className="flex flex-col">
+                        <span className={`text-xs md:text-sm font-bold transition-colors ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : 'text-white group-hover:text-[#FFDD00]'}`}>
                           {track.title}
                         </span>
-                        <span className="text-xs text-gray-500 truncate">
-                          {currentEpisode.author}
-                        </span>
+                        <span className="text-[9px] md:text-xs text-gray-500">{currentEpisode.author}</span>
                       </div>
                     </div>
-                    <span
-                      className={`text-sm flex-shrink-0 ${currentTrackIdx === trackIdx ? "text-[#FFDD00]" : "text-gray-500"}`}
-                      aria-label={`Track duration: ${track.duration}`}
-                    >
+                    <span className={`text-[10px] md:text-sm ${currentTrackIdx === trackIdx ? 'text-[#FFDD00]' : 'text-gray-500'}`} aria-label={`Track duration: ${track.duration}`}>
                       {track.duration}
                     </span>
                   </div>
@@ -300,12 +377,8 @@ export default function ProgramSpotify() {
         </div>
       </section>
 
-      <section className="w-full bg-[#2D5FFE] pb-10 sm:pb-15 pt-8">
-        <div
-          className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 flex flex-wrap md:flex-nowrap justify-center gap-6 sm:gap-8 md:gap-10 pb-10 pt-10 scroll-smooth"
-          role="tablist"
-          aria-label="Spotify Series Programs"
-        >
+      <section className="w-full bg-[#2D5FFE] pb-15 pt-8">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-16 flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-6 md:gap-10 pb-10 pt-10 scroll-smooth snap-x hide-scrollbar" role="tablist" aria-label="Spotify Series Programs">
           {episodes.map((episode, i) => (
             <div
               key={i}
@@ -334,9 +407,7 @@ export default function ProgramSpotify() {
               )}
 
               {/* Thumbnail Container */}
-              <div
-                className={`w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-[24px] sm:rounded-[40px] overflow-hidden transition-all duration-300 ${activeIndex === i ? "border-[4px] sm:border-[6px] border-[#FFDD00]" : "bg-gray-200/40 group-hover:scale-105"}`}
-              >
+              <div className={`w-36 h-36 md:w-64 md:h-64 rounded-[30px] md:rounded-[40px] overflow-hidden transition-all duration-300 ${activeIndex === i ? 'border-[4px] md:border-[6px] border-[#FFDD00]' : 'bg-gray-200/40 group-hover:scale-105'}`}>
                 <Image
                   src={episode.thumbnail}
                   alt=""
@@ -344,7 +415,7 @@ export default function ProgramSpotify() {
                   height={256}
                   className={`w-full h-full object-cover transition-all duration-300 ${activeIndex === i ? "opacity-100" : "opacity-80"}`}
                   quality={60}
-                  sizes="(max-width: 640px) 128px, (max-width: 768px) 192px, 256px"
+                  sizes="(max-width: 768px) 144px, 256px"
                 />
               </div>
             </div>

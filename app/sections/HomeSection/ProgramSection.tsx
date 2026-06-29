@@ -58,8 +58,8 @@ export default function ProgramSection({ variant = "home" }: ProgramSectionProps
           pagination={{ clickable: true }}
         >
           {programs.map((prog) => (
-            <SwiperSlide key={prog.id} className="py-4">
-              <div className="relative group overflow-hidden rounded-[20px] shadow-lg transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl cursor-pointer">
+            <SwiperSlide key={prog.id} className="py-4 px-2">
+              <div className={`relative group overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl cursor-pointer ${isProgramPage ? 'shadow-[9px_8px_4px_0px_rgba(0,0,0,0.25)]' : 'shadow-lg'}`}>
                 <Image
                   src={prog.img}
                   alt={`Program ${prog.id}`}

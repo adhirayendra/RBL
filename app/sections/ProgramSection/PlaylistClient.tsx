@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import type { TrackItem } from "@/data/chartTracks";
+
+export interface TrackItem {
+  id: string;
+  titleMusic: string;
+  artistName: string;
+  durationMusic: string;
+  albumCover: string;
+}
 
 interface PlaylistClientProps {
   tracks: TrackItem[];
@@ -22,22 +29,22 @@ export default function PlaylistClient({
         <div className="flex flex-col">
           {tracks.map((track, index) => (
             <div
-              key={track.id}
-              className="playlist-row group grid items-center py-6 border-t first:border-t-0 border-black/10 cursor-pointer hover:bg-black/5 transition-all duration-300"
+              key={index}
+              className="playlist-row group grid grid-cols-[auto_auto_1fr_auto] items-center py-6 border-t first:border-t-0 border-black/10 cursor-pointer hover:bg-black/5 transition-all duration-300"
               onClick={handleClick}
             >
               {/* Rank Number */}
-              <div className="text-4xl md:text-5xl font-black text-black/80 px-4 md:px-8 select-none text-center">
+              <div className="text-2xl md:text-5xl font-black text-black/80 px-2 md:px-8 select-none text-center min-w-[40px] md:min-w-[80px]">
                 {index + 1}
               </div>
 
               {/* Album & Vinyl Container */}
-              <div className="flex justify-start items-center">
-                <div className="album-vinyl scale-110 md:scale-125">
+              <div className="flex justify-start items-center overflow-visible pr-2 md:pr-0">
+                <div className="album-vinyl scale-110 md:scale-125 origin-center">
                   <div className="album-cover-wrapper shadow-2xl">
                     <Image
                       src={track.albumCover || "https://placehold.co/200x200"}
-                      alt={track.name}
+                      alt={track.titleMusic}
                       width={150}
                       height={150}
                       className="w-full h-full object-cover"
@@ -53,18 +60,18 @@ export default function PlaylistClient({
               </div>
 
               {/* Song Info */}
-              <div className="flex flex-col justify-center px-8 md:px-12">
-                <h3 className="text-xl md:text-2xl font-bold text-black leading-tight truncate">
-                  {track.name}
+              <div className="flex flex-col justify-center px-4 md:px-12 min-w-0">
+                <h3 className="text-base md:text-2xl font-bold text-black leading-tight truncate">
+                  {track.titleMusic}
                 </h3>
-                <p className="text-sm md:text-base text-black/60 font-medium truncate">
-                  {track.artists}
+                <p className="text-xs md:text-base text-black/60 font-medium truncate">
+                  {track.artistName}
                 </p>
               </div>
 
               {/* Duration */}
-              <div className="text-right text-lg md:text-xl font-bold text-black/70 px-4 md:px-8 select-none">
-                {track.duration}
+              <div className="text-right text-sm md:text-xl font-bold text-black/70 px-3 md:px-8 select-none">
+                {track.durationMusic}
               </div>
             </div>
           ))}
