@@ -46,6 +46,18 @@ const CENTERED_EVENT = {
   maxWidthClass: "max-w-[300px] sm:max-w-[400px] md:max-w-[500px]",
 };
 
+const BOTTOM_EVENTS = [
+  CENTERED_EVENT,
+  {
+    id: 6,
+    src: "/image/events/Logo Checksound Color.png",
+    alt: "Checksound Color Event",
+    width: 420,
+    height: 280,
+    maxWidthClass: "max-w-[280px] sm:max-w-[360px] md:max-w-[420px]",
+  },
+];
+
 export default function EventList() {
   return (
     <div className="max-w-6xl w-full px-6 flex flex-col items-center gap-12">
@@ -69,15 +81,19 @@ export default function EventList() {
         ))}
       </div>
 
-      {/* Centered Row 3 */}
-      <div className="w-full flex justify-center mt-6">
-        <EventCard
-          src={CENTERED_EVENT.src}
-          alt={CENTERED_EVENT.alt}
-          width={CENTERED_EVENT.width}
-          height={CENTERED_EVENT.height}
-          maxWidthClass={CENTERED_EVENT.maxWidthClass}
-        />
+      {/* Bottom Row 3 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 w-full justify-items-center mt-6">
+        {BOTTOM_EVENTS.map((event) => (
+          <EventCard
+            key={event.id}
+            src={event.src}
+            alt={event.alt}
+            width={event.width}
+            height={event.height}
+            maxWidthClass={event.maxWidthClass}
+            priority={event.priority}
+          />
+        ))}
       </div>
     </div>
   );
