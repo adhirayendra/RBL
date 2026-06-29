@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaPlay, FaTimes } from "react-icons/fa";
+import { videos } from "@/data/Programs/youtubeVideos";
 
 export const SectionYoutube = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -213,10 +214,12 @@ export const SectionYoutube = () => {
               {(videos[activeIndex].recommendations || []).map((video, idx) => (
                 <div
                   key={idx}
-                  onClick={() => video.link && window.open(video.link, '_blank')}
+                  onClick={() =>
+                    video.link && window.open(video.link, "_blank")
+                  }
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      video.link && window.open(video.link, '_blank');
+                    if (e.key === "Enter" || e.key === " ") {
+                      video.link && window.open(video.link, "_blank");
                     }
                   }}
                   role="button"
@@ -258,11 +261,11 @@ export const SectionYoutube = () => {
               key={video.id}
               role="tab"
               aria-selected={activeIndex === i}
-              aria-label={`Select program: ${video.title.replace('\n', ' ')}`}
+              aria-label={`Select program: ${video.title.replace("\n", " ")}`}
               tabIndex={0}
               onClick={() => setActiveIndex(i)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
+                if (e.key === "Enter" || e.key === " ") {
                   setActiveIndex(i);
                 }
               }}
