@@ -66,7 +66,7 @@ export default function ArticleSection() {
                 <SwiperSlide key={article._id} className="py-2">
                   <Link
                     href={`/article/read/${article._id}`}
-                    className="flex flex-col group cursor-pointer"
+                    className="flex flex-col group cursor-pointer pb-8"
                   >
                     <div className="rounded-[10px] overflow-hidden mb-6 shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-2">
                       <Image
@@ -77,7 +77,7 @@ export default function ArticleSection() {
                         className="object-cover w-full h-auto"
                       />
                     </div>
-                    <h3 className="text-xl font-bold mb-3 leading-snug group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold mb-3 leading-snug group-hover:text-blue-600 transition-colors line-clamp-3">
                       {article.title}
                     </h3>
                   </Link>

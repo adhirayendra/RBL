@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link"; // Ditambahkan untuk menangani tautan internal Next.js
 import { PortableText } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
-import { client } from "@/sanity/lib/client"; // Pastikan path client ini sesuai di projekmu
+import { client } from "@/sanity/lib/client";
 
 // Inisialisasi builder untuk membuat URL gambar yang valid secara otomatis
 const builder = imageUrlBuilder(client);
@@ -77,6 +80,36 @@ export default function ReadArticleForm({ article }: { article: any }) {
         </ol>
       ),
     },
+    // KUNCI PERBAIKAN: Menangani elemen tautan (Link) dari Sanity Studio
+    marks: {
+      link: ({ children, value }: any) => {
+        const href = value?.href || "";
+        // Cek apakah link mengarah ke halaman internal (dimulai dengan '/')
+        const isInternal = href.startsWith("/");
+
+        if (isInternal) {
+          return (
+            <Link
+              href={href}
+              className="text-blue-600 underline font-medium hover:text-blue-800 transition-colors"
+            >
+              {children}
+            </Link>
+          );
+        }
+
+        // Tautan eksternal dibuka di tab baru demi keamanan dan kenyamanan pengguna
+        return (
+          <a
+            href={href}
+            rel="noopener noreferrer"
+            className="text-blue-600 underline font-medium hover:text-blue-800 transition-colors"
+          >
+            {children}
+          </a>
+        );
+      },
+    },
   };
 
   return (
@@ -98,7 +131,7 @@ export default function ReadArticleForm({ article }: { article: any }) {
           />
         </div>
 
-        {/* Content Artikel yang Fleksibel, Mendukung Teks, Heading, List, dan Gambar */}
+        {/* Content Artikel yang Fleksibel, Mendukung Teks, Heading, List, Gambar, dan Tautan */}
         <div className="space-y-4">
           <PortableText value={article.content} components={ptComponents} />
         </div>
