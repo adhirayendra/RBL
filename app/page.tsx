@@ -1,8 +1,8 @@
 // Import Section
-import Hero from "./sections/HomeSection/Hero";
-import ProgramSection from "./sections/HomeSection/ProgramSection";
-import ArticleSection from "./sections/HomeSection/ArticleSection";
-import TopChart from "./sections/HomeSection/TopChart";
+import Hero from "./sections/homeSection/Hero";
+import ProgramSection from "./sections/homeSection/ProgramSection";
+import ArticleSection from "./sections/homeSection/ArticleSection";
+import TopChart from "./sections/homeSection/TopChart";
 
 export default function HomePage() {
   return (
