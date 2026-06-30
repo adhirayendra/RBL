@@ -77,7 +77,7 @@ export default function RadioWidget() {
       {/* Audio Element */}
       <audio 
         ref={audioRef} 
-        src="https://c2.siar.us/listen/radiobudiluhur/live" 
+        src="https://c2.siar.us/listen/radiobudiluhur/stream" 
         preload="none" 
       />
 
