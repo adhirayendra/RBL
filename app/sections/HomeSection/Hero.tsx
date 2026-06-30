@@ -4,21 +4,20 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[850px] bg-[#2D5FFE] overflow-hidden"
+
+      className="relative w-full pt-[95px] sm:pt-0 bg-[#2D5FFE] overflow-hidden"
     >
-      {/* Background Gradients & Accents (Matching Figma) */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#2D5FFE] via-[#2D5FFE] to-[#FFFEF5] opacity-90" />
 
-      {/* Hero Content */}
-      <div className="relative w-full h-[850px]">
+      <div className="relative w-full h-[180px] xs:h-[220px] sm:h-[450px] md:h-[650px] lg:h-[850px]">
         <Image
           src="/image/hero.webp"
           alt="Radio Budi Luhur Hero"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
-          quality={80}
-          sizes="(max-width: 768px) 100vw, 1920px"
+          quality={95}
+          sizes="100vw"
         />
       </div>
     </section>
