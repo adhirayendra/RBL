@@ -23,11 +23,11 @@ export default function ProgramSection({ variant = "home" }: ProgramSectionProps
   const isProgramPage = variant === "program";
 
   return (
-    <section className={`w-full relative py-20 ${isProgramPage ? 'bg-[#1C1C1C]' : 'bg-gradient-to-t from-[#2D5FFE] to-[#0A31AD] text-white rounded-t-[60px]'}`}>
+    <section className={`w-full relative py-20 ${isProgramPage ? 'bg-[#1C1C1C] mt-15 md:mt-20' : 'bg-gradient-to-t from-[#2D5FFE] to-[#0A31AD] text-white rounded-t-[60px]'}`}>
 
       {isProgramPage ? (
         /* Yellow Tab for Program Page */
-        <div className="absolute top-0 left-6 md:left-16 -translate-y-full bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[25px] md:rounded-t-[35px]">
+        <div className="absolute top-0 left-6 md:left-30 -translate-y-full bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[25px] md:rounded-t-[35px]">
           <h2 className="text-black text-lg md:text-xl font-extrabold font-['DM_Sans'] tracking-wide">Program Siaran</h2>
         </div>
       ) : (
@@ -39,7 +39,7 @@ export default function ProgramSection({ variant = "home" }: ProgramSectionProps
         </div>
       )}
 
-      <div className={`w-full max-w-[1440px] mx-auto px-6 md:px-16 ${isProgramPage ? 'pt-4' : ''}`}>
+      <div className={`w-full max-w-[1440px] mx-auto px-6 md:px-16 ${isProgramPage ? '' : ''}`}>
         <Swiper className="program-swiper !pb-10"
           spaceBetween={30}
           slidesPerView={3}
