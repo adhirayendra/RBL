@@ -22,6 +22,38 @@ export default function ProgramSpotify() {
   const [isMuted, setIsMuted] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) {
+      // swipe left (next)
+      setActiveIndex((activeIndex + 1) % episodes.length);
+      setCurrentTrackIdx(0);
+      if (isPlaying && audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    } else if (diff < -50) {
+      // swipe right (prev)
+      setActiveIndex((activeIndex - 1 + episodes.length) % episodes.length);
+      setCurrentTrackIdx(0);
+      if (isPlaying && audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   const episodes = [
     {
@@ -262,7 +294,12 @@ export default function ProgramSpotify() {
           </div>
 
           {/* Overlapping Album Covers - Mobile Only */}
-          <div className="flex md:hidden justify-center items-center gap-2 relative w-full h-[180px] my-4 overflow-hidden">
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className="flex md:hidden justify-center items-center gap-2 relative w-full h-[180px] my-4 overflow-hidden select-none touch-pan-y"
+          >
             {/* Preceding Cover */}
             <div
               onClick={() => {
