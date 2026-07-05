@@ -9,14 +9,22 @@ export default function SocialMediaList({
   href: string;
   Icon: IconType;
 }) {
+  const handleClick = async (link: string) => {
+    // Bisa diganti teksnya biar keliatan lebih menarik
+    const clipboardText = `Ayo baca artikel di sini: \n ${window.location.href}`;
+
+    await navigator.clipboard.writeText(clipboardText);
+    window.open(link, "_blank");
+  };
+
   return (
     <li>
-      <Link
-        href={href}
+      <button
+        onClick={() => handleClick(href)}
         className="text-gray-400 hover:text-white transition-colors"
       >
         <Icon size={36} />
-      </Link>
+      </button>
     </li>
   );
 }
