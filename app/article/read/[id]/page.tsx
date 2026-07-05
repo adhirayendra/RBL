@@ -29,6 +29,7 @@ export default function ReadArticlePage() {
     "relatedArticles": *[_type == "article" && _id != ^._id && category->name == ^.category->name] | order(publishedAt desc) [0...3] {
       _id,
       title,
+      "thumbnailUrl": thumbnail.asset->url,
       publishedAt,
       "category": category->{
         name,

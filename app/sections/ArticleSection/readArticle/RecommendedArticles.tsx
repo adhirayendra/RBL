@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { socialData } from "@/app/assets/socialMediaList"; // Sesuaikan path-nya jika berubah
+import Image from "next/image"; // Import Image
+import { socialData } from "@/app/assets/socialMediaList";
 import SocialMediaList from "@/app/components/SocialMediaList";
 
 export default function RecommendedArticles({
@@ -30,17 +31,30 @@ export default function RecommendedArticles({
             <Link
               href={`/article/read/${article._id}`}
               key={article._id}
-              className="flex flex-col gap-2 group cursor-pointer"
+              className="flex flex-col gap-3 group cursor-pointer"
             >
-              <h4 className="text-md text-white font-bold leading-snug group-hover:underline transition-colors">
-                {article.title}
-              </h4>
-              <div className="text-xs text-gray-400 space-y-1">
-                {/* Format tanggal bawaan ISO dari Sanity ke format lokal */}
-                <p>
-                  {new Date(article.publishedAt).toLocaleDateString("id-ID")}
-                </p>
-                <p>In Article "{article.category?.label}"</p>
+              {/* Container Gambar Thumbnail */}
+              <div className="relative w-full aspect-video overflow-hidden rounded-lg shadow-md">
+                <Image
+                  src={article.thumbnailUrl || "/image/placeholder.jpg"}
+                  alt={article.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+
+              {/* Teks Informasi */}
+              <div className="flex flex-col gap-1">
+                <h4 className="text-md text-white font-bold leading-snug group-hover:underline transition-colors line-clamp-2">
+                  {article.title}
+                </h4>
+                <div className="text-xs text-gray-400 space-y-0.5">
+                  <p>
+                    {new Date(article.publishedAt).toLocaleDateString("id-ID")}
+                  </p>
+                  <p>In Article "{article.category?.label}"</p>
+                </div>
               </div>
             </Link>
           ))}
