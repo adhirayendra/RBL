@@ -1,26 +1,56 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image"; // Import Image
-import { socialData } from "@/app/assets/socialMediaList";
-import SocialMediaList from "@/app/components/SocialMediaList";
+import Image from "next/image";
+import { useState } from "react";
+import PopupCopyLink from "./PopupCopyLink";
 
 export default function RecommendedArticles({
   relatedArticles,
 }: {
   relatedArticles: any[];
 }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyLink = async () => {
+    try {
+      const currentUrl = window.location.href;
+      await navigator.clipboard.writeText(currentUrl);
+
+      setIsCopied(true);
+
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    } catch (err) {
+      console.error("Gagal menyalin link: ", err);
+    }
+  };
+
   return (
-    <div className="w-full bg-linear-to-b from-gray-500 to-black p-8 md:p-12 font-sans">
+    <div className="w-full bg-linear-to-b from-gray-500 to-black p-8 md:p-12 font-sans relative">
+      {/* Container Bagikan Tautan - Diubah menjadi Teks Tombol Minimalis */}
       <div className="mb-10">
-        <span className="text-sm font-medium text-gray-300 block mb-4">
+        <span className="text-sm font-medium text-gray-300 block mb-3">
           Share this:
         </span>
 
-        <ul className="flex items-center gap-4">
-          {socialData.map((item) => (
-            <SocialMediaList key={item.id} href={item.href} Icon={item.icon} />
-          ))}
-        </ul>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="py-2 px-5 bg-gray-700/40 hover:bg-gray-600 text-white font-semibold text-sm rounded-xl transition-all border border-gray-600 cursor-pointer shadow-xs"
+        >
+          Salin Tautan Artikel
+        </button>
       </div>
+
+      {/* Memanggil PopupCopyLink dengan mengirimkan props */}
+      <PopupCopyLink
+        isOpen={isModalOpen}
+        isCopied={isCopied}
+        onClose={() => setIsModalOpen(false)}
+        onCopy={handleCopyLink}
+      />
 
       {/* Recommended Section */}
       <div>
