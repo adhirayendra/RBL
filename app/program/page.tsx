@@ -12,16 +12,15 @@ export default async function ProgramPage() {
   // Fetch Spotify programs from Sanity
   let sanityEpisodes = [];
   try {
-    sanityEpisodes = await client.fetch(`*[_type == "spotifyProgram"] {
+    sanityEpisodes = await client.fetch(`*[_type == "programSpotify"] | order(_createdAt asc) {
       _id,
       title,
       author,
-      "mainCover": mainCover.asset->url,
-      "thumbnail": coalesce(thumbnail.asset->url, mainCover.asset->url),
+      "coverImage": coverImage.asset->url,
       playlist[] {
         title,
         duration,
-        "src": coalesce(audioFile.asset->url, audioUrl)
+        "src": audioFile.asset->url
       }
     }`);
   } catch (error) {
