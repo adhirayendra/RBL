@@ -1,0 +1,24 @@
+Struktur folder sudah saya perbaiki dengan cara memisahkan setiap component di folder yang semestinya
+
+Daftar Folder yang ditambahkan:
+1. Components
+    - common [Digunakan untuk component yang sering digunakan kembali (Button, Card, Input, dll)]
+    - layout [Digunakan untuk Navbar, sidebar, dan Footer]
+2. data [Digunakan untuk management data]
+    - Article.ts [Management article]
+    - LiveShow.ts [Management Siaran]
+    - YoutubeList.ts [Management Youtube Vidio]
+    - dll sesuai kebutuhan
+3. assets [digunakan untuk management data statik]
+    - NavbarList.tsx [Data list navbar di taro di file ini agar di file Navbar tidak terlalu banyak]
+4. sections [Digunakan untuk section setiap page]
+    - ada 5 folder section yang mewakili setiap section di page 
+        contoh: HomeSection Di dalam folder tersebut terdapat File component setiap section di HomePage, begitu juga di ProgramPage
+5. types [Digunakan untuk management type data setiap data yang akan digunakan]
+    - ArticleType.ts
+    - LiveShowType.ts
+    - YoutubeListType.ts
+
+===========================================================================
+=== Kalo kurang paham dan mau ditanyain langsung chat group/pribadi aja ===
+===========================================================================
