@@ -1,8 +1,7 @@
-"use client";
+import { notFound, permanentRedirect } from "next/navigation";
 
-import { useParams } from "next/navigation";
-import useSWR from "swr";
 import { client } from "@/sanity/lib/client";
+<<<<<<< HEAD:app/article/read/[title]/page.tsx
 import ReadArticleForm from "@/app/sections/ArticleSection/readArticle/ReadArticleForm";
 import RecommendedArticles from "@/app/sections/ArticleSection/readArticle/RecommendedArticles";
 
@@ -15,53 +14,45 @@ export default function ReadArticlePage() {
   const urlParts = titleParam.split("--");
   const articleId = urlParts[urlParts.length - 1];
 
+=======
+import { buildArticleUrl } from "../slug";
+
+type ArticleDetail = {
+  _id: string;
+  title: string;
+};
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+async function getArticleById(id: string): Promise<ArticleDetail | null> {
+>>>>>>> 8d71c9724697ca01f07ae17fe16811502e1baeb6:app/article/read/[id]/page.tsx
   const query = `*[_type == "article" && _id == $id][0] {
     _id,
-    title,
-    "thumbnailUrl": thumbnail.asset->url,
-    publishedAt,
-    "category": category->{
-      name,
-      label
-    },
-    "author": author->name,
-    content,
-    "relatedArticles": *[_type == "article" && _id != ^._id && category->name == ^.category->name] | order(publishedAt desc) [0...3] {
-      _id,
-      title,
-      "thumbnailUrl": thumbnail.asset->url,
-      publishedAt,
-      "category": category->{
-        name,
-        label
-      }
-    }
+    title
   }`;
 
+<<<<<<< HEAD:app/article/read/[title]/page.tsx
   // Hit API Sanity menggunakan parameter ID yang super aman
   const { data: article, isLoading } = useSWR(
     articleId ? [query, { id: articleId }] : null,
     fetcher,
   );
+=======
+  return client.fetch<ArticleDetail | null>(query, { id });
+}
+>>>>>>> 8d71c9724697ca01f07ae17fe16811502e1baeb6:app/article/read/[id]/page.tsx
 
-  if (isLoading) {
-    return (
-      <div className="bg-[#2D5FFE] w-full h-screen flex items-center justify-center">
-        <span className="text-2xl font-bold text-white animate-pulse">
-          Loading Article...
-        </span>
-      </div>
-    );
-  }
+export default async function LegacyArticlePage({ params }: PageProps) {
+  const { id } = await params;
+  const article = await getArticleById(id);
 
   if (!article) {
-    return (
-      <div className="bg-[#2D5FFE] w-full h-40 flex items-center justify-center">
-        <span className="text-2xl font-bold text-white">Article not found</span>
-      </div>
-    );
+    notFound();
   }
 
+<<<<<<< HEAD:app/article/read/[title]/page.tsx
   return (
     <div className="bg-[#2D5FFE] w-full pt-25 md:pt-25 flex flex-col">
       <div className="px-6 md:px-12">
@@ -77,4 +68,7 @@ export default function ReadArticlePage() {
       </div>
     </div>
   );
+=======
+  permanentRedirect(buildArticleUrl(article._id, article.title));
+>>>>>>> 8d71c9724697ca01f07ae17fe16811502e1baeb6:app/article/read/[id]/page.tsx
 }
