@@ -1,6 +1,6 @@
-import AboutHeader from "../sections/AboutSection/AboutHero";
 import AboutHero from "../sections/AboutSection/AboutHero";
 import AboutDescription from "../sections/AboutSection/AboutDescription";
+import AboutHeader from "../sections/AboutSection/AboutHeader";
 
 export const metadata = {
   title: "About Us - Radio Budi Luhur",

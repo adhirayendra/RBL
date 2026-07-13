@@ -6,7 +6,7 @@ export default function AboutHero() {
             {/* Team Photo Container */}
             <div className="relative w-7/12 sm:w-3/5 h-full">
                 <Image
-                    src="/image/about/8zVeXiPuWog-HD 1.png"
+                    src="/image/about/about.png"
                     alt="Radio Budi Luhur Team"
                     fill
                     priority

@@ -7,6 +7,7 @@ import useSWR from "swr";
 
 import { client } from "@/sanity/lib/client";
 import type { Article } from "@/app/hooks/articles";
+import { buildArticleUrl } from "@/app/article/read/slug";
 import ArticleCategory from "./ArticleCategory";
 import PaginationPage from "./Pagination";
 
@@ -84,12 +85,21 @@ export default function ArticleList() {
               </p>
             </li>
           ) : currentPost.length > 0 ? (
+<<<<<<< HEAD
+            currentPost.map((article: Article) => {
+              const articleSlug = article.title
+                .toLowerCase()
+                .trim()
+                .replace(/[^\w\s-]/g, "") // Hapus karakter khusus
+                .replace(/[\s_-]+/g, "-") // Ganti spasi/underscore jadi tanda hubung
+                .replace(/^-+|-+$/g, ""); // Bersihkan tanda hubung di awal/akhir teks
+=======
             currentPost.map((article: Article) => (
               <li
                 key={article._id}
                 className="group flex flex-col cursor-pointer h-full"
               >
-                <Link href={`/article/read/${article._id}`}>
+                <Link href={buildArticleUrl(article._id, article.title)}>
                   {/* Container Gambar */}
                   <div className="relative w-full aspect-video overflow-hidden rounded-lg mb-4">
                     <Image
@@ -103,20 +113,38 @@ export default function ArticleList() {
                       Read More
                     </span>
                   </div>
+>>>>>>> 8d71c9724697ca01f07ae17fe16811502e1baeb6
 
-                  {/* Konten Teks */}
-                  <div className="flex flex-col gap-2 grow">
-                    <h2 className="text-white text-xl md:text-2xl font-bold group-hover:underline line-clamp-2">
-                      {article.title}
-                    </h2>
+              return (
+                <li
+                  key={article._id}
+                  className="group flex flex-col cursor-pointer h-full"
+                >
+                  <Link href={`/article/read/${articleSlug}--${article._id}`}>
+                    {/* Container Gambar */}
+                    <div className="relative w-full aspect-video overflow-hidden rounded-lg mb-4">
+                      <Image
+                        src={article.thumbnailUrl}
+                        alt={article.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      <span className="absolute bottom-0 right-0 text-sm md:text-base text-black bg-amber-300 rounded-tl-2xl font-bold px-4 py-2 z-10">
+                        Read More
+                      </span>
+                    </div>
 
-                    {/* <p className="text-gray-300 line-clamp-3 text-sm md:text-base">
-                      {article.desc}
-                    </p> */}
-                  </div>
-                </Link>
-              </li>
-            ))
+                    {/* Konten Teks */}
+                    <div className="flex flex-col gap-2 grow">
+                      <h2 className="text-white text-xl md:text-2xl font-bold group-hover:underline line-clamp-2">
+                        {article.title}
+                      </h2>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })
           ) : (
             <li className="col-span-full flex justify-center items-center py-20 list-none">
               <p className="text-white font-bold opacity-50 text-center">

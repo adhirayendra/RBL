@@ -9,7 +9,7 @@ export default function StreamingHero() {
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-blue-600 to-stone-50" />
 
       {/* Base Background Image (Layered in front of gradient) */}
-      <div className="absolute inset-0 z-10 w-full h-[785px]">
+      <div className="absolute inset-0 z-10 w-full h-[1000px] mt-60 md:mt-0 md:h-[785px]">
         <Image
           src="/image/backgroundstream.webp" // Using the existing hero image as background or placehold
           alt="Streaming Background"

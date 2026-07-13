@@ -11,7 +11,6 @@ const SPOTIFY_PLAYLIST_URL =
   "https://open.spotify.com/playlist/6L2m9wL9kJAmNhzlmIkFRI";
 
 export default function TopChart() {
-  // Query GROQ yang sudah diperbaiki sintaksisnya
   const query = `*[_type == "topMusic"] | order(rank asc) [0...30] {
     _id,
     rank,
@@ -21,7 +20,6 @@ export default function TopChart() {
     albumCover
   }`;
 
-  // Menggunakan SWR dengan melemparkan data langsung ke tracks
   const { data: tracks, isLoading } = useSWR(query, fetcher);
 
   return (
