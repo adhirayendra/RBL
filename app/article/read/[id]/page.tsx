@@ -1,4 +1,5 @@
 import { notFound, permanentRedirect } from "next/navigation";
+
 import { client } from "@/sanity/lib/client";
 import { buildArticleUrl } from "../slug";
 
@@ -16,6 +17,7 @@ async function getArticleById(id: string): Promise<ArticleDetail | null> {
     _id,
     title
   }`;
+
   return client.fetch<ArticleDetail | null>(query, { id });
 }
 

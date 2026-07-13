@@ -12,8 +12,7 @@ export default async function ProgramPage() {
   // Fetch Spotify programs from Sanity
   let sanityEpisodes = [];
   try {
-    sanityEpisodes =
-      await client.fetch(`*[_type == "programSpotify"] | order(_createdAt asc) {
+    sanityEpisodes = await client.fetch(`*[_type == "programSpotify"] | order(_createdAt asc) {
       _id,
       title,
       author,
