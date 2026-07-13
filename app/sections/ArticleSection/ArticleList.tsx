@@ -7,6 +7,7 @@ import useSWR from "swr";
 
 import { client } from "@/sanity/lib/client";
 import type { Article } from "@/app/hooks/articles";
+import { buildArticleUrl } from "@/app/article/read/slug";
 import ArticleCategory from "./ArticleCategory";
 import PaginationPage from "./Pagination";
 
@@ -89,7 +90,7 @@ export default function ArticleList() {
                 key={article._id}
                 className="group flex flex-col cursor-pointer h-full"
               >
-                <Link href={`/article/read/${article._id}`}>
+                <Link href={buildArticleUrl(article._id, article.title)}>
                   {/* Container Gambar */}
                   <div className="relative w-full aspect-video overflow-hidden rounded-lg mb-4">
                     <Image

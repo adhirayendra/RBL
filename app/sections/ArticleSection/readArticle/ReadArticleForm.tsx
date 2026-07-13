@@ -114,13 +114,28 @@ export default function ReadArticleForm({ article }: { article: any }) {
 
   return (
     <div className="w-full pt-20 px-6 md:px-12 bg-white">
-      <article className="mx-auto">
-        {/* Judul Utama Artikel */}
-        <h1 className="font-extrabold text-3xl md:text-6xl text-gray-900 leading-tight pb-6">
-          {article.title}
-        </h1>
+      <article className="mx-auto max-w-5xl">
+        <header className="mb-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700 mb-3">
+            {article.category?.label || "Artikel"}
+          </p>
+          <h1 className="font-extrabold text-3xl md:text-6xl text-gray-900 leading-tight pb-4">
+            {article.title}
+          </h1>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+            {article.publishedAt ? (
+              <time dateTime={article.publishedAt}>
+                {new Date(article.publishedAt).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>
+            ) : null}
+            {article.author ? <span>• {article.author}</span> : null}
+          </div>
+        </header>
 
-        {/* Thumbnail Utama Artikel */}
         <div className="relative w-full aspect-video mb-8">
           <Image
             src={article.thumbnailUrl || "/image/placeholder.jpg"}
@@ -128,10 +143,10 @@ export default function ReadArticleForm({ article }: { article: any }) {
             fill
             className="rounded-xl shadow-md object-cover"
             priority
+            sizes="(max-width: 768px) 100vw, 75vw"
           />
         </div>
 
-        {/* Content Artikel yang Fleksibel, Mendukung Teks, Heading, List, Gambar, dan Tautan */}
         <div className="space-y-4">
           <PortableText value={article.content} components={ptComponents} />
         </div>

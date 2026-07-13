@@ -7,6 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import type { Article } from "@/app/hooks/articles";
 import useSWR from "swr";
 import { client } from "@/sanity/lib/client";
+import { buildArticleUrl } from "@/app/article/read/slug";
 
 // Fetcher menerima query string langsung
 const fetcher = (groqQuery: string) => client.fetch(groqQuery);
@@ -65,7 +66,7 @@ export default function ArticleSection() {
               data?.posts?.map((article: Article) => (
                 <SwiperSlide key={article._id} className="py-2">
                   <Link
-                    href={`/article/read/${article._id}`}
+                    href={buildArticleUrl(article._id, article.title)}
                     className="flex flex-col group cursor-pointer pb-8"
                   >
                     <div className="rounded-[10px] overflow-hidden mb-6 shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-2">

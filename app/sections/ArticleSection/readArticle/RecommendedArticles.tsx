@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import PopupCopyLink from "./PopupCopyLink";
+import { buildArticleUrl } from "@/app/article/read/slug";
 
 export default function RecommendedArticles({
   relatedArticles,
@@ -59,7 +60,7 @@ export default function RecommendedArticles({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {relatedArticles.map((article: any) => (
             <Link
-              href={`/article/read/${article._id}`}
+              href={buildArticleUrl(article._id, article.title)}
               key={article._id}
               className="flex flex-col gap-3 group cursor-pointer"
             >
