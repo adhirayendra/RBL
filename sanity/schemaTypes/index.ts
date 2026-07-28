@@ -7,6 +7,7 @@ import track from "./programSpotify/track";
 import youtubeProgram from "./programYoutube/youtubeProgram";
 import youtubeVideo from "./programYoutube/youtubeVideo";
 import broadcast from "./programBroadcast/broadcast";
+import about from "./about/about";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,5 +19,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     youtubeProgram,
     youtubeVideo,
     broadcast,
+    about,
   ],
 };
