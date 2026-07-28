@@ -8,6 +8,9 @@ export const metadata = {
   description: "Program Radio Budi Luhur",
 };
 
+export const revalidate = 60; // Memperbarui data setiap 60 detik (ISR)
+
+
 export default async function ProgramPage() {
   // Fetch Spotify programs from Sanity
   let sanityEpisodes = [];

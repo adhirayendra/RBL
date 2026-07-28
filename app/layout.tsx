@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   description: "Radionya Generasi Cerdas Berbudi Luhur",
 };
 
+export const revalidate = 60; // Terapkan ISR 60 detik untuk SEMUA halaman di website ini
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
