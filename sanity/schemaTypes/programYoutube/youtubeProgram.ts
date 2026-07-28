@@ -26,5 +26,11 @@ export default {
       },
       validation: (Rule: any) => Rule.required(),
     },
+    {
+      name: "youtubeUrl",
+      title: "Link / URL Video YouTube Utama (Untuk tombol PLAY)",
+      type: "url",
+      description: "Masukkan link penuh video YouTube utama untuk program ini. Contoh: https://www.youtube.com/watch?v=...",
+    },
   ],
 };

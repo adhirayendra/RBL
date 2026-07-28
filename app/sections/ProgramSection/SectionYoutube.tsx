@@ -20,8 +20,8 @@ export const SectionYoutube = () => {
     "description": description,
     "thumbnail": programThumbnail.asset->url,
     
-    // Ambil video pertama (terbaru) sebagai video utama segmen ini
-    "link": *[_type == "youtubeVideo" && program._ref == ^._id] | order(publishedDate desc)[0].youtubeUrl,
+    // Ambil link utama dari youtubeUrl program, atau fallback ke video terbaru dari youtubeVideo
+    "link": coalesce(youtubeUrl, *[_type == "youtubeVideo" && program._ref == ^._id] | order(publishedDate desc)[0].youtubeUrl),
     
     // Ambil koleksi video lainnya di dalam program ini sebagai rekomendasi
     "recommendations": *[_type == "youtubeVideo" && program._ref == ^._id] | order(publishedDate desc) {
