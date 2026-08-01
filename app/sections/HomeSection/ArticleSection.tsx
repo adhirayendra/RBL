@@ -69,13 +69,12 @@ export default function ArticleSection() {
                     href={buildArticleUrl(article._id, article.title)}
                     className="flex flex-col group cursor-pointer pb-8"
                   >
-                    <div className="rounded-[10px] overflow-hidden mb-6 shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-2">
+                    <div className="rounded-[10px] overflow-hidden mb-6 shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-2 relative w-full aspect-video">
                       <Image
                         src={article.thumbnailUrl || "/image/placeholder.jpg"}
                         alt={article.title}
-                        width={358}
-                        height={221}
-                        className="object-cover w-full h-auto"
+                        fill
+                        className="object-cover"
                       />
                     </div>
                     <h3 className="text-xl font-bold mb-3 leading-snug group-hover:text-blue-600 transition-colors line-clamp-3">
