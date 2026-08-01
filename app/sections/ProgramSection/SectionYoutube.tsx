@@ -79,7 +79,7 @@ export const SectionYoutube = () => {
           />
           {/* Subtle gradient overlay to blend into the black background on desktop/mobile */}
           <div className="absolute inset-0 bg-gradient-to-l from-zinc-900 to-transparent md:bg-none z-10 pointer-events-none" />
-          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-[#121212] z-10 pointer-events-none" />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-zinc-900 z-10 pointer-events-none" />
         </div>
 
         {/* Right Side: Content Area */}
