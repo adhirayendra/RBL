@@ -36,8 +36,8 @@ export default function ProgramSection({
     >
       {isProgramPage ? (
         /* Yellow Tab for Program Page */
-        <div className="absolute top-0 left-6 md:left-30 -translate-y-full bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[25px] md:rounded-t-[35px]">
-          <h2 className="text-black text-lg md:text-xl font-extrabold font-['DM_Sans'] tracking-wide">
+        <div className="absolute top-0 left-6 md:left-16 -translate-y-full bg-[#FFDD00] px-6 md:px-10 py-1.5 md:py-3 rounded-t-[20px] md:rounded-t-[35px] z-20">
+          <h2 className="text-black text-sm md:text-2xl font-extrabold font-['DM_Sans'] tracking-wide">
             Program Siaran
           </h2>
         </div>

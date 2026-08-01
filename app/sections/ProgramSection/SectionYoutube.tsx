@@ -61,8 +61,10 @@ export const SectionYoutube = () => {
   return (
     <section className="w-full bg-gradient-to-b from-blue-600 to-[#2D5FFE] md:bg-[#2D5FFE] overflow-hidden flex flex-col items-center pb-16">
       {/* Yellow Tab */}
-      <div className="self-start bg-[#FFDD00] text-black font-black px-6 py-1 rounded-t-[26px] text-[11px] md:text-2xl tracking-wide shadow-md ml-6 md:ml-16">
-        Program Youtube
+      <div className="self-start bg-[#FFDD00] px-6 md:px-10 py-1.5 md:py-3 rounded-t-[20px] md:rounded-t-[35px] shadow-md ml-6 md:ml-16 z-20">
+        <h2 className="text-black text-sm md:text-2xl font-extrabold font-['DM_Sans'] tracking-wide">
+          Program Youtube
+        </h2>
       </div>
 
       {/* Hero Section */}

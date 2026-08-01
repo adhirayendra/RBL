@@ -164,8 +164,8 @@ export default function ProgramSpotify({ initialEpisodes = [] }: Props) {
       {episodes.length === 0 ? (
         <section className="w-full relative pt-2 md:pt-16 pb-10 md:pb-12 mt-6 md:mt-12">
           <div className="absolute inset-0 bg-[#2C2C2C]" />
-          <div className="absolute top-0 left-4 md:left-29 -translate-y-full bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[25px] md:rounded-t-[35px] z-20">
-            <h2 className="text-black text-lg md:text-xl font-extrabold font-['DM_Sans'] tracking-wide">
+          <div className="absolute top-0 left-6 md:left-16 -translate-y-full bg-[#FFDD00] px-6 md:px-10 py-1.5 md:py-3 rounded-t-[20px] md:rounded-t-[35px] z-20">
+            <h2 className="text-black text-sm md:text-2xl font-extrabold font-['DM_Sans'] tracking-wide">
               Program Spotify
             </h2>
           </div>
@@ -185,8 +185,8 @@ export default function ProgramSpotify({ initialEpisodes = [] }: Props) {
             {/* Layer Background Abu-abu */}
             <div className="absolute inset-0 bg-[#2C2C2C]" />
 
-            <div className="absolute top-0 left-4 md:left-29 -translate-y-full bg-[#FFDD00] px-8 md:px-10 py-2 md:py-3 rounded-t-[25px] md:rounded-t-[35px] z-20">
-              <h2 className="text-black text-lg md:text-xl font-extrabold font-['DM_Sans'] tracking-wide">
+            <div className="absolute top-0 left-6 md:left-16 -translate-y-full bg-[#FFDD00] px-6 md:px-10 py-1.5 md:py-3 rounded-t-[20px] md:rounded-t-[35px] z-20">
+              <h2 className="text-black text-sm md:text-2xl font-extrabold font-['DM_Sans'] tracking-wide">
                 Program Spotify
               </h2>
             </div>
