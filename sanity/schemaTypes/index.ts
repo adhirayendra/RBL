@@ -8,6 +8,7 @@ import youtubeProgram from "./programYoutube/youtubeProgram";
 import youtubeVideo from "./programYoutube/youtubeVideo";
 import broadcast from "./programBroadcast/broadcast";
 import about from "./about/about";
+import event from "./events/event";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -20,5 +21,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     youtubeVideo,
     broadcast,
     about,
+    event,
   ],
 };

@@ -199,7 +199,7 @@ export const SectionYoutube = () => {
       {/* Thumbnails Area */}
       <div className="w-full max-w-[1440px] px-4 md:px-[33px] mt-4 md:mt-8">
         <div
-          className="flex flex-row md:flex-wrap lg:flex-nowrap justify-start md:justify-center overflow-x-auto gap-2 md:gap-[26px] pb-2 md:pb-0 scrollbar-hide"
+          className="flex flex-row md:flex-wrap lg:flex-nowrap justify-start md:justify-center overflow-x-auto gap-2 md:gap-[26px] py-4 md:py-6 scrollbar-hide"
           role="tablist"
         >
           {videos.map((video: any, i: number) => (
@@ -214,7 +214,8 @@ export const SectionYoutube = () => {
                   setActiveIndex(i);
                 }
               }}
-              className="relative cursor-pointer group transition-all flex-shrink-0"
+              className={`relative cursor-pointer group transition-all duration-300 flex-shrink-0 ${activeIndex === i ? "scale-[1.02] md:scale-105" : ""
+                }`}
               onClick={() => setActiveIndex(i)}
             >
               {/* Indicator Arrow (Desktop only) */}
@@ -224,7 +225,7 @@ export const SectionYoutube = () => {
 
               {/* The Image */}
               <div
-                className={`w-[96px] h-[54px] sm:w-[128px] sm:h-[72px] md:w-80 md:h-48 overflow-hidden rounded-md md:rounded-lg relative transition-all duration-300 ${activeIndex === i ? "scale-[1.02] md:scale-105" : ""}`}
+                className="w-[96px] h-[54px] sm:w-[128px] sm:h-[72px] md:w-80 md:h-48 overflow-hidden rounded-md md:rounded-lg relative transition-all duration-300"
               >
                 <Image
                   src={video.thumbnail || "/image/placeholder.jpg"}
