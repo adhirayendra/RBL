@@ -19,8 +19,20 @@ export default function PlaylistClient({
   tracks,
   playlistUrl,
 }: PlaylistClientProps) {
+  const lastTapRef = { current: 0 };
+
   const handleClick = () => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (isMobile) return; // mobile uses double-tap
     window.open(playlistUrl, "_blank");
+  };
+
+  const handleTouchEnd = () => {
+    const now = Date.now();
+    if (now - lastTapRef.current < 300) {
+      window.open(playlistUrl, "_blank");
+    }
+    lastTapRef.current = now;
   };
 
   return (
@@ -30,17 +42,18 @@ export default function PlaylistClient({
           {tracks.map((track, index) => (
             <div
               key={index}
-              className="playlist-row group grid grid-cols-[auto_auto_1fr_auto] items-center py-6 border-t first:border-t-0 border-black/10 cursor-pointer hover:bg-black/5 transition-all duration-300"
+              className="playlist-row group items-center py-6 border-t first:border-t-0 border-black/10 cursor-pointer hover:bg-black/5 transition-all duration-300"
               onClick={handleClick}
+              onTouchEnd={handleTouchEnd}
             >
               {/* Rank Number */}
-              <div className="text-2xl md:text-5xl font-black text-black/80 px-2 md:px-8 select-none text-center min-w-[40px] md:min-w-[80px]">
+              <div className="text-[18px] md:text-2xl font-black text-black/80 px-4 md:px-8 select-none text-center min-w-[44px] md:min-w-[80px]">
                 {index + 1}
               </div>
 
               {/* Album & Vinyl Container */}
-              <div className="flex justify-start items-center overflow-visible pr-2 md:pr-0">
-                <div className="album-vinyl scale-110 md:scale-125 origin-center">
+              <div className="flex justify-start items-center">
+                <div className="album-vinyl">
                   <div className="album-cover-wrapper shadow-2xl">
                     <Image
                       src={track.albumCover || "https://placehold.co/200x200"}

@@ -129,7 +129,7 @@ export default function RadioWidget() {
           {/* Play Icon */}
           <button
             onClick={togglePlay}
-            className="relative md:absolute flex items-center justify-center overflow-hidden hover:scale-105 transition-transform shrink-0 outline-none cursor-pointer w-[35px] h-[35px] md:left-[225px] md:top-[152px]"
+            className="relative md:absolute flex items-center justify-center overflow-hidden hover:scale-105 transition-transform shrink-0 outline-none cursor-pointer w-[35px] h-[35px] md:left-[255px] md:top-[152px]"
             aria-label={isPlaying ? "Pause Stream" : "Play Stream"}
           >
             <div className="absolute left-[2.67px] top-[2.67px] w-7 h-7 outline outline-4 outline-offset-[-2px] outline-neutral-500 rounded-full flex items-center justify-center">

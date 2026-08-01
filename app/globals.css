@@ -41,7 +41,7 @@ body {
 /* New Flat Song Row Grid */
 .playlist-row {
   display: grid;
-  grid-template-columns: 100px 180px 1fr 120px;
+  grid-template-columns: 72px 160px 1fr 90px;
   align-items: center;
 }
 
@@ -171,24 +171,27 @@ body {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .playlist-row {
-    grid-template-columns: 60px 100px 1fr 60px;
+    grid-template-columns: 56px 120px 1fr 58px;
   }
 
   .album-vinyl {
     --album-size: 80px;
     --vinyl-size: 70px;
-    --vinyl-translate: 35px;
+    --vinyl-translate: 30px;
+    --cover-translate: 0px;
   }
 }
 
 @media (max-width: 480px) {
   .playlist-row {
-    grid-template-columns: 40px 70px 1fr 50px;
+    grid-template-columns: 42px 90px 1fr 48px;
   }
 
   .album-vinyl {
     --album-size: 60px;
     --vinyl-size: 50px;
+    --vinyl-translate: 20px;
+    --cover-translate: 0px;
   }
 }
 
