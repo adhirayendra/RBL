@@ -36,11 +36,24 @@ export default function ProgramSection({
     >
       {isProgramPage ? (
         /* Yellow Tab for Program Page */
-        <div className="absolute top-0 left-6 md:left-16 -translate-y-full bg-[#FFDD00] px-6 md:px-10 py-1.5 md:py-3 rounded-t-[20px] md:rounded-t-[35px] z-20">
-          <h2 className="text-black text-sm md:text-2xl font-extrabold font-['DM_Sans'] tracking-wide">
-            Program Siaran
-          </h2>
-        </div>
+        <>
+          {/* Mobile */}
+          <div className="md:hidden absolute top-0 left-6 -translate-y-full bg-[#FFDD00] px-6 py-1.5 rounded-t-[20px] z-20">
+            <h2 className="text-black text-sm font-extrabold font-['DM_Sans'] tracking-wide">
+              Program Siaran
+            </h2>
+          </div>
+          {/* Desktop – sejajar dengan konten */}
+          <div className="hidden md:block absolute top-0 left-0 w-full -translate-y-full z-20 pointer-events-none">
+            <div className="max-w-[1440px] mx-auto px-16">
+              <div className="inline-block bg-[#FFDD00] px-10 py-3 rounded-t-[35px] pointer-events-auto">
+                <h2 className="text-black text-2xl font-extrabold font-['DM_Sans'] tracking-wide">
+                  Program Siaran
+                </h2>
+              </div>
+            </div>
+          </div>
+        </>
       ) : (
         /* Original Title for Home Page */
         <div className="container mx-auto px-6 flex flex-col items-center mb-16">
