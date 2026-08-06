@@ -79,9 +79,12 @@ export const SectionYoutube = () => {
       </div>
 
       {/* Hero Section */}
-      <div className="w-full flex flex-row bg-zinc-900 min-h-[144px] md:min-h-[500px] md:h-[525px] relative overflow-hidden">
+      {/* 1. Hapus min-h dan h, biarkan parent menggunakan height auto berdasarkan isinya */}
+      <div className="w-full flex flex-row bg-zinc-900 relative overflow-hidden items-stretch">
+
         {/* Left Side: Active Video Image */}
-        <div className="w-[65%] md:w-[60%] h-[144px] sm:h-[240px] md:h-[525px] relative flex-shrink-0">
+        {/* 2. Hapus h-[144px], sm:h-[240px], dan md:h-[525px]. Ganti dengan aspect-video (proporsi 16:9) */}
+        <div className="w-[65%] md:w-[60%] relative flex-shrink-0 aspect-video">
           <Image
             src={activeVideo.thumbnail || "/image/placeholder.jpg"}
             alt={activeVideo.title}
@@ -90,7 +93,7 @@ export const SectionYoutube = () => {
             priority
             sizes="(max-width: 768px) 65vw, 60vw"
           />
-          {/* Subtle gradient overlay to blend into the black background on desktop/mobile */}
+          {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-l from-zinc-900 to-transparent md:bg-none z-10 pointer-events-none" />
           <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-zinc-900 z-10 pointer-events-none" />
         </div>
@@ -99,7 +102,7 @@ export const SectionYoutube = () => {
         <div className="w-[35%] md:w-[40%] flex flex-col justify-center py-2 pr-4 md:px-12 md:py-0 z-20 bg-zinc-900 relative">
           {!showRecommended ? (
             <div className="flex flex-col h-full md:justify-center">
-              <h1 className="text-white text-[11px] sm:text-base md:text-4xl lg:text-5xl font-bold md:font-black font-['DM_Sans'] tracking-tight leading-[1.2] mb-1 md:mb-6">
+              <h1 className="text-white text-[11px] sm:text-base md:text-3xl lg:text-4xl font-bold md:font-black font-['DM_Sans'] tracking-tight leading-[1.2] mb-1 md:mb-4">
                 {formatTitle(activeVideo.title)
                   .split("\n")
                   .map((line, i) => (
@@ -108,23 +111,24 @@ export const SectionYoutube = () => {
                     </span>
                   ))}
               </h1>
-              <p className="text-white/90 md:text-white/80 text-[7px] sm:text-[10px] md:text-base lg:text-lg font-medium font-['DM_Sans'] text-left md:text-justify leading-tight md:leading-relaxed max-w-[450px]">
+              {/* Batas tinggi pada description bisa kamu sesuaikan kembali jika sudah pas dengan gambar */}
+              <p className="text-white/90 md:text-white/80 text-[7px] sm:text-[10px] md:text-sm lg:text-base font-medium font-['DM_Sans'] text-left md:text-justify leading-tight md:leading-relaxed max-w-[450px] max-h-[5rem] md:max-h-[120px] overflow-y-auto scrollbar-hide">
                 {activeVideo.description}
               </p>
 
               {/* Buttons */}
-              <div className="flex flex-row gap-1 md:gap-3 mt-2 md:mt-8">
+              <div className="flex flex-row gap-1 md:gap-3 mt-2 md:mt-6">
                 {/* PLAY */}
                 <button
                   onClick={() =>
                     activeVideo.link && window.open(activeVideo.link, "_blank")
                   }
-                  className="flex-1 md:flex-none md:w-36 h-5 md:h-12 bg-gradient-to-b from-blue-600 to-blue-900 md:bg-none md:bg-[#2D5FFE] rounded-[46px] flex items-center justify-center md:justify-start px-1 md:px-1.5 relative group hover:scale-105 transition-transform cursor-pointer"
+                  className="flex-1 md:flex-none md:w-32 h-5 md:h-10 bg-gradient-to-b from-blue-600 to-blue-900 md:bg-none md:bg-[#2D5FFE] rounded-[46px] flex items-center justify-center md:justify-start px-1 md:px-1.5 relative group hover:scale-105 transition-transform cursor-pointer"
                 >
-                  <div className="w-3 h-3 md:w-8 md:h-8 bg-stone-900 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-3 h-3 md:w-7 md:h-7 bg-stone-900 rounded-full flex items-center justify-center flex-shrink-0">
                     <FaPlay className="text-white ml-0.5 text-[5px] md:text-[10px]" />
                   </div>
-                  <span className="flex-1 text-white text-[6px] sm:text-[8px] md:text-lg font-bold font-['DM_Sans'] md:pr-2 text-center md:text-left md:ml-3">
+                  <span className="flex-1 text-white text-[6px] sm:text-[8px] md:text-sm font-bold font-['DM_Sans'] md:pr-2 text-center md:text-left md:ml-2">
                     PLAY
                   </span>
                 </button>
@@ -133,7 +137,7 @@ export const SectionYoutube = () => {
                 <button
                   onClick={() => setShowRecommended(true)}
                   aria-label="Show recommended videos"
-                  className="flex-1 md:flex-none md:w-48 h-5 md:h-12 bg-gradient-to-b from-blue-600 to-blue-900 md:bg-none md:bg-[#2D5FFE] rounded-[46px] flex items-center justify-center text-white text-[6px] sm:text-[8px] md:text-lg font-bold font-['DM_Sans'] hover:scale-105 transition-transform cursor-pointer"
+                  className="flex-1 md:flex-none md:w-40 h-5 md:h-10 bg-gradient-to-b from-blue-600 to-blue-900 md:bg-none md:bg-[#2D5FFE] rounded-[46px] flex items-center justify-center text-white text-[6px] sm:text-[8px] md:text-sm font-bold font-['DM_Sans'] hover:scale-105 transition-transform cursor-pointer"
                 >
                   RECOMMENDED
                 </button>
